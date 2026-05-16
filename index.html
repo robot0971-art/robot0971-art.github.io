@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Game Developer Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
@@ -32,7 +36,7 @@
             <div class="hero-text">
                 <h1 class="hero-title">Unity Game Developer</h1>
                 <p class="hero-subtitle">C#과 Unity로 게임을 만듭니다</p>
-                <p class="hero-description">게임 개발에 열정을 가진 개발자입니다. 새로운 도전과 배움을 즐깁니다.</p>
+                <p class="hero-description">게임 개발에 애정을 가진 개발자입니다. 새로운 도전과 배움을 즐깁니다.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
                     <a href="#contact" class="btn btn-secondary">연락하기</a>
@@ -46,26 +50,26 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>안녕하세요!</h3>
+                    <h3>안녕하세요</h3>
                     <p>Unity와 C#을 사용하여 게임을 개발하고 있습니다.</p>
-                    <p>다양한 장르의 게임을 만들어보며 실력을 키워가고 있습니다.</p>
-                    <p>새로운 기술을 배우고, 창의적인 문제 해결을 즐깁니다.</p>
+                    <p>다양한 장르의 게임을 만들어 보며 실력을 쌓아가고 있습니다.</p>
+                    <p>새로운 기술을 배우고 창의적인 문제 해결을 즐깁니다.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat-item fade-in">
                         <i class="fas fa-gamepad"></i>
                         <h4>Projects</h4>
-                        <p class="stat-number">0</p>
+                        <p class="stat-number" data-target="1">0</p>
                     </div>
                     <div class="stat-item fade-in">
                         <i class="fas fa-code"></i>
                         <h4>Languages</h4>
-                        <p class="stat-number">0</p>
+                        <p class="stat-number" data-target="1">0</p>
                     </div>
                     <div class="stat-item fade-in">
                         <i class="fas fa-tools"></i>
                         <h4>Tools</h4>
-                        <p class="stat-number">0</p>
+                        <p class="stat-number" data-target="2">0</p>
                     </div>
                 </div>
             </div>
@@ -82,16 +86,16 @@
                     </div>
                     <h3>Unity</h3>
                     <div class="skill-bar">
-                        <div class="skill-progress" data-progress="0"></div>
+                        <div class="skill-progress" data-progress="70"></div>
                     </div>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
-                        <i class="fas fa-code"></i>
+                        <i class="fas fa-hashtag"></i>
                     </div>
                     <h3>C#</h3>
                     <div class="skill-bar">
-                        <div class="skill-progress" data-progress="0"></div>
+                        <div class="skill-progress" data-progress="70"></div>
                     </div>
                 </div>
                 <div class="skill-card fade-in">
@@ -100,7 +104,7 @@
                     </div>
                     <h3>Git</h3>
                     <div class="skill-bar">
-                        <div class="skill-progress" data-progress="0"></div>
+                        <div class="skill-progress" data-progress="60"></div>
                     </div>
                 </div>
                 <div class="skill-card fade-in">
@@ -109,7 +113,7 @@
                     </div>
                     <h3>Game Design</h3>
                     <div class="skill-bar">
-                        <div class="skill-progress" data-progress="0"></div>
+                        <div class="skill-progress" data-progress="60"></div>
                     </div>
                 </div>
             </div>
@@ -128,17 +132,18 @@
             <div class="projects-grid">
                 <div class="project-card fade-in" data-category="unity">
                     <div class="project-image">
-                        <img src="images/projects/placeholder.svg" alt="Project 1">
+                        <img src="images/projects/sunnyside-island-main.png" alt="Sunnyside Island">
                         <div class="project-overlay">
-                            <a href="projects/sample-tower-defense.html" class="btn btn-small">상세보기</a>
+                            <a href="projects/sunnyside-island.html" class="btn btn-small">상세보기</a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>Sample Tower Defense</h3>
-                        <p>타워 디펜스 게임 - 다양한 타워로 적의 공격을 막으세요!</p>
+                        <h3>Sunnyside Island</h3>
+                        <p>외딴 섬에서 자원을 모아 탈출용 배를 만드는 2D 생존 생활 게임입니다.</p>
                         <div class="project-tags">
                             <span class="tag">Unity</span>
                             <span class="tag">C#</span>
+                            <span class="tag">Simulation</span>
                         </div>
                     </div>
                 </div>
@@ -162,7 +167,8 @@
                         <i class="fab fa-github"></i>
                         <div>
                             <h4>GitHub</h4>
-                            <p><a href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a></p>
+                            <p><a href="https://github.com/yourusername" target="_blank"
+                                    rel="noopener">github.com/yourusername</a></p>
                         </div>
                     </div>
                 </div>
@@ -188,11 +194,13 @@
         <div class="container">
             <p>&copy; 2026 Unity Game Developer Portfolio. All rights reserved.</p>
             <div class="footer-links">
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener" title="GitHub Profile" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener" title="GitHub Profile"
+                    aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
 </body>
+
 </html>

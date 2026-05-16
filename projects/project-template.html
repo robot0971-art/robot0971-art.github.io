@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로젝트 이름 - Portfolio</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -13,19 +14,19 @@
             min-height: 100vh;
             background: linear-gradient(135deg, var(--pastel-yellow) 0%, var(--pastel-pink) 100%);
         }
-        
+
         .project-header {
             text-align: center;
             padding: 3rem 0;
         }
-        
+
         .project-header h1 {
             font-size: 3rem;
             color: var(--white);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 1rem;
         }
-        
+
         .project-meta {
             display: flex;
             justify-content: center;
@@ -34,47 +35,47 @@
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
         }
-        
+
         .project-meta span {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .project-container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .project-images {
             margin-bottom: 3rem;
         }
-        
+
         .main-image {
             width: 100%;
             border-radius: 15px;
             box-shadow: var(--shadow);
             margin-bottom: 1rem;
         }
-        
+
         .image-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
         }
-        
+
         .image-gallery img {
             width: 100%;
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s;
         }
-        
+
         .image-gallery img:hover {
             transform: scale(1.05);
         }
-        
+
         .project-content {
             background: var(--white);
             border-radius: 15px;
@@ -82,36 +83,36 @@
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
         }
-        
+
         .project-content h2 {
             color: var(--pastel-purple);
             margin-bottom: 1rem;
             font-size: 1.8rem;
         }
-        
+
         .project-content p {
             color: var(--text-light);
             line-height: 1.8;
             margin-bottom: 1rem;
         }
-        
+
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 1rem;
         }
-        
+
         .tech-stack .tag {
             background: linear-gradient(135deg, var(--pastel-yellow), var(--pastel-pink));
         }
-        
+
         .project-links {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
         }
-        
+
         .back-btn {
             display: inline-block;
             margin-bottom: 2rem;
@@ -120,24 +121,24 @@
             font-weight: 500;
             transition: transform 0.3s;
         }
-        
+
         .back-btn:hover {
             transform: translateX(-5px);
         }
-        
+
         .back-btn i {
             margin-right: 0.5rem;
         }
-        
+
         @media (max-width: 768px) {
             .project-header h1 {
                 font-size: 2rem;
             }
-            
+
             .project-content {
                 padding: 1.5rem;
             }
-            
+
             .project-meta {
                 gap: 1rem;
             }
@@ -168,7 +169,7 @@
             <a href="../index.html#projects" class="back-btn">
                 <i class="fas fa-arrow-left"></i> 프로젝트 목록으로 돌아가기
             </a>
-            
+
             <div class="project-header">
                 <h1>프로젝트 이름</h1>
                 <div class="project-meta">
@@ -177,7 +178,7 @@
                     <span><i class="fas fa-code-branch"></i> Unity, C#</span>
                 </div>
             </div>
-            
+
             <div class="project-images">
                 <img src="../images/projects/placeholder.svg" alt="Project Main Image" class="main-image">
                 <div class="image-gallery">
@@ -186,30 +187,30 @@
                     <img src="../images/projects/placeholder.svg" alt="Screenshot 3">
                 </div>
             </div>
-            
+
             <div class="project-content">
                 <h2>프로젝트 소개</h2>
-                <p>이곳에 프로젝트에 대한 상세한 설명을 작성하세요.</p>
+                <p>프로젝트에 대한 상세한 설명을 작성하세요.</p>
                 <p>어떤 게임인지, 어떤 기능이 있는지, 어떤 기술을 사용했는지 설명하면 좋습니다.</p>
-                
+
                 <h2>주요 기능</h2>
-                <p>• 기능 1: 설명</p>
-                <p>• 기능 2: 설명</p>
-                <p>• 기능 3: 설명</p>
-                
+                <p>기능 1: 설명</p>
+                <p>기능 2: 설명</p>
+                <p>기능 3: 설명</p>
+
                 <h2>사용 기술</h2>
                 <div class="tech-stack">
                     <span class="tag">Unity</span>
                     <span class="tag">C#</span>
                     <span class="tag">Git</span>
                 </div>
-                
+
                 <h2>개발 과정</h2>
                 <p>개발하면서 겪었던 어려움이나 해결 방법에 대해 작성하세요.</p>
-                
+
                 <h2>배운 점</h2>
-                <p>이 프로젝트를 통해 배운 점들을 작성하세요.</p>
-                
+                <p>이 프로젝트를 통해 배운 점을 작성하세요.</p>
+
                 <div class="project-links">
                     <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
                         <i class="fab fa-github"></i> GitHub 저장소
