@@ -93,7 +93,7 @@
 
         .image-gallery img {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            height: auto;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: var(--shadow);
@@ -149,6 +149,12 @@
             gap: 1rem;
             margin-top: 2rem;
             flex-wrap: wrap;
+        }
+
+        .media-links {
+            justify-content: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
         }
 
         .back-btn {
@@ -312,11 +318,16 @@
             </div>
 
             <div class="project-media">
-                <video controls muted playsinline preload="metadata" class="project-video"
+                <video controls autoplay muted playsinline preload="auto" class="project-video"
                     poster="../images/projects/knight-quest-title.png">
                     <source src="../videos/knight-quest-move.mp4" type="video/mp4">
                     브라우저가 동영상 재생을 지원하지 않습니다.
                 </video>
+                <div class="project-links media-links">
+                    <a href="knight-quest-video.html" class="btn btn-primary">
+                        <i class="fas fa-play"></i> 영상 크게 보기
+                    </a>
+                </div>
                 <img src="../images/projects/knight-quest-title.png" alt="Knight Quest title screen"
                     class="main-image title-image gallery-image" data-gallery-index="0">
                 <div class="image-gallery">
