@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knight Quest - Portfolio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 45%, #9face6 100%);
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.18);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .project-media {
+            margin-bottom: 3rem;
+        }
+
+        .project-video,
+        .main-image {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            background: #111;
+            margin-bottom: 1rem;
+        }
+
+        .project-video {
+            width: auto;
+            max-width: min(100%, 420px);
+            max-height: 70vh;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .main-image {
+            cursor: pointer;
+        }
+
+        .title-image {
+            width: auto;
+            max-width: min(100%, 320px);
+            max-height: 64vh;
+            object-fit: contain;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .image-gallery img:hover,
+        .main-image:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-content {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .project-content h2 {
+            color: #6a5acd;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 0 0 1.5rem 1.2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-stack .tag {
+            background: linear-gradient(135deg, #f6d365, #9face6);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.82);
+            z-index: 2000;
+            padding: 24px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: min(1100px, 86vw);
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+            background: #111;
+        }
+
+        .lightbox-btn {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--text-dark);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .lightbox-btn:hover {
+            background: var(--white);
+            transform: scale(1.05);
+        }
+
+        .lightbox-close {
+            top: 24px;
+            right: 24px;
+        }
+
+        .lightbox-prev {
+            left: 24px;
+        }
+
+        .lightbox-next {
+            right: 24px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%);
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-meta {
+                gap: 1rem;
+            }
+
+            .lightbox {
+                padding: 16px;
+            }
+
+            .lightbox-image {
+                max-width: 92vw;
+                max-height: 76vh;
+            }
+
+            .lightbox-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-prev {
+                left: 12px;
+            }
+
+            .lightbox-next {
+                right: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="project-container">
+            <a href="../index.html#projects" class="back-btn">
+                <i class="fas fa-arrow-left"></i> 프로젝트 목록으로 돌아가기
+            </a>
+
+            <div class="project-header">
+                <h1>Knight Quest</h1>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar"></i> 2026</span>
+                    <span><i class="fas fa-user"></i> 개인 프로젝트</span>
+                    <span><i class="fas fa-code-branch"></i> Unity 6, C#</span>
+                </div>
+            </div>
+
+            <div class="project-media">
+                <video controls muted playsinline preload="metadata" class="project-video"
+                    poster="../images/projects/knight-quest-title.png">
+                    <source src="../videos/knight-quest-move.mp4" type="video/mp4">
+                    브라우저가 동영상 재생을 지원하지 않습니다.
+                </video>
+                <img src="../images/projects/knight-quest-title.png" alt="Knight Quest title screen"
+                    class="main-image title-image gallery-image" data-gallery-index="0">
+                <div class="image-gallery">
+                    <img src="../images/projects/knight-quest-1.png" alt="Knight Quest gameplay screenshot 1"
+                        class="gallery-image" data-gallery-index="1">
+                    <img src="../images/projects/knight-quest-2.png" alt="Knight Quest gameplay screenshot 2"
+                        class="gallery-image" data-gallery-index="2">
+                    <img src="../images/projects/knight-quest-3.png" alt="Knight Quest gameplay screenshot 3"
+                        class="gallery-image" data-gallery-index="3">
+                </div>
+            </div>
+
+            <div class="project-content">
+                <h2>프로젝트 소개</h2>
+                <p>Knight Quest는 Unity 6로 제작한 2D 사이드스크롤 방치형 RPG입니다. 플레이어는 시작 화면에서 메인 스테이지로 진입한 뒤, 기사 캐릭터가 자동으로 이동하고 몬스터를 탐지해 전투를 진행합니다.</p>
+                <p>몬스터를 처치하면 골드와 경험치를 얻고, 획득한 재화를 사용해 스탯을 강화하거나 장비와 스킬을 성장시키는 구조입니다. 짧은 플레이에서도 성장 흐름이 보이도록 자동 전투, 보상, UI, 저장 시스템을 하나의 루프로 연결했습니다.</p>
+
+                <h2>방치형 RPG란?</h2>
+                <p>방치형 RPG는 플레이어가 모든 전투 조작을 직접 하지 않아도 캐릭터가 자동으로 전투와 성장을 이어가는 RPG 장르입니다. 핵심 재미는 반복 전투 자체보다 캐릭터가 계속 강해지는 흐름, 보상 획득, 스탯·장비·스킬 강화의 선택에 있습니다.</p>
+                <p>Knight Quest에서는 자동 이동, 적 탐지, 공격 타이밍, 사망 처리, 보상 지급이 자동 전투 루프 안에서 동작합니다. 플레이어는 전투 과정을 지켜보면서 성장 방향을 관리하고, 더 높은 스테이지로 나아가는 방식으로 게임을 진행합니다.</p>
+
+                <h2>주요 기능</h2>
+                <ul class="feature-list">
+                    <li>플레이어와 몬스터의 자동 타겟팅, 공격, 피격, 사망, 보상 흐름</li>
+                    <li>스테이지 진행과 몬스터 스폰을 데이터 기반으로 관리</li>
+                    <li>레벨, 경험치, 골드, 스탯 강화, 장비 보너스, 스킬 성장 시스템</li>
+                    <li>스탯, 스킬, 장비 패널을 제어하는 게임플레이 UI 창 관리</li>
+                    <li>ISaveable, SaveManager, SaveData 기반의 JSON 저장 및 불러오기</li>
+                    <li>경량 DIContainer를 활용한 런타임 의존성 등록과 주입</li>
+                </ul>
+
+                <h2>사용 기술</h2>
+                <div class="tech-stack">
+                    <span class="tag">Unity 6</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">URP 2D</span>
+                    <span class="tag">ScriptableObject</span>
+                    <span class="tag">Object Pooling</span>
+                    <span class="tag">Auto Battle</span>
+                    <span class="tag">Stage System</span>
+                    <span class="tag">Reward System</span>
+                    <span class="tag">Stat Upgrade</span>
+                    <span class="tag">Skill System</span>
+                    <span class="tag">Equipment System</span>
+                    <span class="tag">JSON Save</span>
+                    <span class="tag">Save/Load</span>
+                    <span class="tag">Custom DI</span>
+                    <span class="tag">Balance Data</span>
+                    <span class="tag">VFX Playback</span>
+                    <span class="tag">UI Window System</span>
+                </div>
+
+                <h2>개발 포인트</h2>
+                <p>전투, 보상, 스테이지, 스킬, 장비, 저장 기능을 각각 분리해 유지보수하기 쉬운 구조로 구성했습니다. 몬스터와 스테이지 밸런스는 ScriptableObject와 데이터 클래스로 분리해 수치 조정이 코드 수정 없이 가능하도록 만들었습니다.</p>
+                <p>저장 시스템은 여러 시스템이 직접 파일을 다루지 않고 SaveManager를 통해 상태를 모으는 방식으로 설계했습니다. 이를 통해 플레이어의 성장 상태, 보유 재화, 장비와 스킬 정보를 일관된 JSON 데이터로 보존할 수 있습니다.</p>
+
+                <div class="project-links">
+                    <a href="https://github.com/robot0971-art/knight-Rpg" class="btn btn-primary" target="_blank"
+                        rel="noopener">
+                        <i class="fab fa-github"></i> GitHub 저장소
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="imageLightbox" aria-hidden="true">
+        <button class="lightbox-btn lightbox-close" type="button" aria-label="닫기">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-btn lightbox-prev" type="button" aria-label="이전 이미지">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img src="../images/projects/knight-quest-title.png" alt="Knight Quest screenshot enlarged"
+            class="lightbox-image">
+        <button class="lightbox-btn lightbox-next" type="button" aria-label="다음 이미지">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-counter" aria-live="polite">1 / 4</div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Unity Game Developer Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const galleryImages = Array.from(document.querySelectorAll('.gallery-image'));
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImage = lightbox.querySelector('.lightbox-image');
+        const closeButton = lightbox.querySelector('.lightbox-close');
+        const prevButton = lightbox.querySelector('.lightbox-prev');
+        const nextButton = lightbox.querySelector('.lightbox-next');
+        const counter = lightbox.querySelector('.lightbox-counter');
+        let currentImageIndex = 0;
+
+        function showImage(index) {
+            currentImageIndex = (index + galleryImages.length) % galleryImages.length;
+            const target = galleryImages[currentImageIndex];
+            lightboxImage.src = target.src;
+            lightboxImage.alt = target.alt;
+            counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        }
+
+        function openLightbox(index) {
+            showImage(index);
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        galleryImages.forEach((image, index) => {
+            image.addEventListener('click', () => openLightbox(index));
+        });
+
+        closeButton.addEventListener('click', closeLightbox);
+        prevButton.addEventListener('click', () => showImage(currentImageIndex - 1));
+        nextButton.addEventListener('click', () => showImage(currentImageIndex + 1));
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (!lightbox.classList.contains('active')) return;
+
+            if (event.key === 'Escape') {
+                closeLightbox();
+            } else if (event.key === 'ArrowLeft') {
+                showImage(currentImageIndex - 1);
+            } else if (event.key === 'ArrowRight') {
+                showImage(currentImageIndex + 1);
+            }
+        });
+    </script>
+</body>
+
+</html>
