@@ -131,20 +131,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const contactForm = document.getElementById('contactForm');
+    const copyButtons = document.querySelectorAll('.contact-copy-btn');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', (event) => {
-            event.preventDefault();
+    copyButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const value = button.getAttribute('data-copy') || '';
+            const feedback = button.closest('.contact-card')?.querySelector('.copy-feedback');
+            const showFeedback = (message) => {
+                if (!feedback) return;
 
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
+                feedback.textContent = message;
+                window.setTimeout(() => {
+                    feedback.textContent = '';
+                }, 2000);
+            };
 
-            alert(`메시지가 전송되었습니다!\n\n이름: ${name}\n이메일: ${email}`);
-            contactForm.reset();
+            showFeedback('이메일이 복사되었습니다.');
+
+            try {
+                await navigator.clipboard.writeText(value);
+            } catch (error) {
+                const textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                textarea.remove();
+            }
         });
-    }
+    });
 
     const sections = document.querySelectorAll('section[id]');
 

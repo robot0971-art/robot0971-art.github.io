@@ -190,37 +190,32 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Contact</h2>
-            <div class="contact-content">
-                <div class="contact-info fade-in">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>robot0971@gmail.com</p>
+            <p class="contact-lead">함께 일하거나 프로젝트에 대해 이야기하고 싶다면 편하게 연락 주세요.</p>
+            <div class="contact-actions">
+                <div class="contact-card fade-in">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-card-content">
+                        <h4>Email</h4>
+                        <p id="contactEmail">robot0971@gmail.com</p>
+                        <div class="contact-buttons">
+                            <a href="mailto:robot0971@gmail.com" class="btn btn-primary">메일 보내기</a>
+                            <button type="button" class="btn btn-secondary contact-copy-btn"
+                                data-copy="robot0971@gmail.com">복사</button>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <div>
-                            <h4>GitHub</h4>
-                            <p><a href="https://github.com/robot0971-art" target="_blank"
-                                    rel="noopener">github.com/robot0971-art</a></p>
-                        </div>
+                        <span class="copy-feedback" aria-live="polite"></span>
                     </div>
                 </div>
-                <div class="contact-form fade-in">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="이름" required>
+
+                <div class="contact-card fade-in">
+                    <i class="fab fa-github"></i>
+                    <div class="contact-card-content">
+                        <h4>GitHub</h4>
+                        <p>github.com/robot0971-art</p>
+                        <div class="contact-buttons">
+                            <a href="https://github.com/robot0971-art" class="btn btn-primary" target="_blank"
+                                rel="noopener">GitHub 보기</a>
                         </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="이메일" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" placeholder="메시지" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">보내기</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
