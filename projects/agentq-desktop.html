@@ -231,8 +231,10 @@
 
             <div class="project-content">
                 <h2>프로젝트 소개</h2>
-                <p>AgentQ Desktop은 로컬 프로젝트를 분석하고, 사용자의 요청에 따라 코드 검색, 원인 분석, 파일 수정, 검증 제안까지 수행하는 Windows 데스크톱 AI 코딩 에이전트입니다.</p>
-                <p>Unity/C#/웹 프로젝트를 대상으로 워크스페이스 구조를 수집하고, LLM Tool Calling을 통해 파일 읽기, 검색, 편집, 셸 명령 실행 같은 작업을 권한 기반으로 제어하도록 구현했습니다.</p>
+                <p>AgentQ Desktop은 로컬 프로젝트를 분석하고, 사용자의 요청에 따라 코드 검색, 원인 분석, 파일 수정, 검증 제안까지 수행하는 Windows 데스크톱 AI 코딩
+                    에이전트입니다.</p>
+                <p>Unity/C#/웹 프로젝트를 대상으로 워크스페이스 구조를 수집하고, LLM Tool Calling을 통해 파일 읽기, 검색, 편집, 셸 명령 실행 같은 작업을 권한 기반으로
+                    제어하도록 구현했습니다.</p>
 
                 <h2>주요 기능</h2>
                 <ul class="feature-list">
@@ -247,24 +249,33 @@
 
                 <h2>RAG와 검색 구조</h2>
                 <p>키워드 검색만으로 찾기 어려운 코드까지 찾기 위해 프로젝트 파일을 청크로 나누고, OpenAI Embeddings로 로컬 인덱스를 생성하는 구조를 설계했습니다.</p>
-                <p><code>.agentq/embeddings/chunks.jsonl</code>에 청크와 벡터 정보를 저장하고, semantic search 결과를 keyword, symbol, project map 신호와 함께 사용하는 hybrid search 흐름을 구성했습니다.</p>
+                <p><code>.agentq/embeddings/chunks.jsonl</code>에 청크와 벡터 정보를 저장하고, semantic search 결과를 keyword, symbol,
+                    project map 신호와 함께 사용하는 hybrid search 흐름을 구성했습니다.</p>
                 <div class="issue-card">
-                    <p><strong>핵심 포인트:</strong> RAG를 단독 검색으로 쓰는 것이 아니라, 프로젝트 맵, 최근 변경 파일, 키워드 검색, 심볼 검색, 임베딩 유사도 결과를 함께 사용해 대형 코드베이스에서 필요한 맥락만 LLM에 전달하도록 설계했습니다.</p>
+                    <p><strong>핵심 포인트:</strong> RAG를 단독 검색으로 쓰는 것이 아니라, 프로젝트 맵, 최근 변경 파일, 키워드 검색, 심볼 검색, 임베딩 유사도 결과를 함께
+                        사용해 대형 코드베이스에서 필요한 맥락만 LLM에 전달하도록 설계했습니다.</p>
                 </div>
 
                 <h2>언어별 워커 구조</h2>
-                <p>AgentQ 본체는 C#/.NET으로 유지하고, JavaScript/TypeScript, Python, C++/Go/Rust 계열 분석은 별도 로컬 worker 프로세스로 분리했습니다.</p>
-                <p>TypeScript worker, Python worker, Native worker가 프로젝트 구조, 심볼, import/dependency graph, 빌드/테스트 명령 후보를 JSON으로 반환하고, AgentQ는 이 결과를 Project Map, RAG, Evidence, Planning UI에 통합합니다.</p>
+                <p>AgentQ 본체는 C#/.NET으로 유지하고, JavaScript/TypeScript, Python, C++/Go/Rust 계열 분석은 별도 로컬 worker 프로세스로
+                    분리했습니다.</p>
+                <p>TypeScript worker, Python worker, Native worker가 프로젝트 구조, 심볼, import/dependency graph, 빌드/테스트 명령 후보를
+                    JSON으로 반환하고, AgentQ는 이 결과를 Project Map, RAG, Evidence, Planning UI에 통합합니다.</p>
 
                 <h2>Diff와 검토 시스템</h2>
                 <p>AI가 코드를 바로 덮어쓰지 않도록, 변경 전후 내용을 기반으로 라인 단위 diff를 생성하고 사용자가 변경 내용을 확인할 수 있게 했습니다.</p>
-                <p>파일 변경 기록, Git diff/status 패널, 변경 승인 상태, 스냅샷, 롤백, Tool Replay, Telemetry JSONL을 통해 에이전트의 작업 결과를 추적할 수 있도록 구성했습니다.</p>
+                <p>파일 변경 기록, Git diff/status 패널, 변경 승인 상태, 스냅샷, 롤백, Tool Replay, Telemetry JSONL을 통해 에이전트의 작업 결과를 추적할 수
+                    있도록 구성했습니다.</p>
 
                 <h2>프로젝트 메모리와 학습</h2>
-                <p>실행 중 발견한 프로젝트 특성, 검증 명령, 반복 실패 패턴을 learning candidate로 제안하고, 사용자가 승인하면 <code>.agentq/memory.local.json</code>에 lesson으로 저장하는 구조를 구현했습니다.</p>
-                <p>저장된 lesson은 다음 요청에서 사용자 입력과 관련도를 계산해 다시 컨텍스트에 포함됩니다. 예를 들어 이전 빌드 실패, 검증 명령, 자주 수정한 파일 같은 정보를 기억해 비슷한 작업에서 더 빠르게 관련 파일과 검증 흐름을 찾도록 설계했습니다.</p>
+                <p>실행 중 발견한 프로젝트 특성, 검증 명령, 반복 실패 패턴을 learning candidate로 제안하고, 사용자가 승인하면
+                    <code>.agentq/memory.local.json</code>에 lesson으로 저장하는 구조를 구현했습니다.
+                </p>
+                <p>저장된 lesson은 다음 요청에서 사용자 입력과 관련도를 계산해 다시 컨텍스트에 포함됩니다. 예를 들어 이전 빌드 실패, 검증 명령, 자주 수정한 파일 같은 정보를 기억해 비슷한
+                    작업에서 더 빠르게 관련 파일과 검증 흐름을 찾도록 설계했습니다.</p>
                 <div class="issue-card">
-                    <p><strong>핵심 포인트:</strong> 에이전트가 임의로 모든 것을 저장하는 방식이 아니라, 민감 정보와 위험한 명령을 필터링하고 사용자가 승인한 학습 후보만 프로젝트 메모리로 남기는 안전한 학습 흐름을 목표로 했습니다.</p>
+                    <p><strong>핵심 포인트:</strong> 에이전트가 임의로 모든 것을 저장하는 방식이 아니라, 민감 정보와 위험한 명령을 필터링하고 사용자가 승인한 학습 후보만 프로젝트
+                        메모리로 남기는 안전한 학습 흐름을 목표로 했습니다.</p>
                 </div>
 
                 <h2>사용 기술</h2>
@@ -274,44 +285,23 @@
                     <span class="tag">WPF</span>
                     <span class="tag">Windows Desktop App</span>
                     <span class="tag">CLI Tool</span>
-                    <span class="tag">LLM API</span>
-                    <span class="tag">OpenAI-compatible API</span>
-                    <span class="tag">Anthropic API</span>
-                    <span class="tag">Streaming Response</span>
-                    <span class="tag">Tool Calling</span>
-                    <span class="tag">Function Calling</span>
-                    <span class="tag">Permission Approval UI</span>
-                    <span class="tag">Workspace Analysis</span>
+                    <span class="tag">LLM Tool Calling</span>
                     <span class="tag">RAG</span>
-                    <span class="tag">OpenAI Embeddings</span>
-                    <span class="tag">text-embedding-3-small</span>
-                    <span class="tag">Semantic Search</span>
-                    <span class="tag">Hybrid Search</span>
-                    <span class="tag">Symbol Search</span>
+                    <span class="tag">Embeddings</span>
+                    <span class="tag">Function Calling</span>
                     <span class="tag">Project Map</span>
+                    <span class="tag">Hybrid Search</span>
+                    <span class="tag">Semantic Search</span>
+                    <span class="tag">Workspace Analysis</span>
                     <span class="tag">Language Workers</span>
-                    <span class="tag">TypeScript Worker</span>
-                    <span class="tag">Python Worker</span>
-                    <span class="tag">Native Worker</span>
-                    <span class="tag">Dependency Graph</span>
-                    <span class="tag">Vector Similarity</span>
-                    <span class="tag">Local JSONL Vector Cache</span>
-                    <span class="tag">Code Chunking</span>
                     <span class="tag">Project Memory</span>
-                    <span class="tag">Learning Candidates</span>
-                    <span class="tag">Lesson Ranking</span>
-                    <span class="tag">Failure History</span>
-                    <span class="tag">Line Diff</span>
-                    <span class="tag">File Change Review</span>
-                    <span class="tag">Snapshot/Rollback</span>
+                    <span class="tag">Diff Review</span>
+                    <span class="tag">Code Chunking</span>
                     <span class="tag">Git Integration</span>
-                    <span class="tag">Telemetry</span>
-                    <span class="tag">Tool Replay</span>
-                    <span class="tag">Roslyn</span>
                     <span class="tag">MCP Bridge</span>
+                    <span class="tag">Roslyn</span>
                     <span class="tag">Docker</span>
                     <span class="tag">GitHub Actions</span>
-                    <span class="tag">Inno Setup</span>
                 </div>
 
                 <h2>데모 흐름</h2>
