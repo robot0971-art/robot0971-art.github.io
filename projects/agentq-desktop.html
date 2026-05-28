@@ -54,14 +54,23 @@
             margin-bottom: 3rem;
         }
 
-        .project-video,
-        .main-image {
+        .media-card {
+            overflow: hidden;
+            border-radius: 14px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(31, 79, 143, 0.08);
+        }
+
+        .media-card.featured {
+            margin-bottom: 1.25rem;
+        }
+
+        .media-card img,
+        .media-card video {
             width: 100%;
             display: block;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
             background: #111827;
-            margin-bottom: 1rem;
         }
 
         .project-video {
@@ -69,23 +78,38 @@
             object-fit: contain;
         }
 
+        .media-card figcaption {
+            padding: 0.9rem 1rem 1rem;
+            color: var(--text-light);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            background: linear-gradient(135deg, #f8fbff 0%, #f8fffc 100%);
+        }
+
+        .media-card figcaption strong {
+            display: block;
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
         .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
         }
 
         .image-gallery img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .image-gallery img:hover {
+        .media-card:hover img {
             transform: translateY(-2px);
+        }
+
+        .image-gallery .media-card:hover {
             box-shadow: var(--shadow-hover);
         }
 
@@ -175,6 +199,10 @@
                 padding: 1.5rem;
             }
 
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+
             .project-meta {
                 gap: 1rem;
             }
@@ -217,17 +245,46 @@
             </div>
 
             <div class="project-media">
+                <figure class="media-card featured">
                 <video controls autoplay muted playsinline preload="metadata" poster="../images/projects/agentq-2.png"
                     class="project-video">
                     <source src="../videos/agentq-test.mp4" type="video/mp4">
                     브라우저가 동영상 재생을 지원하지 않습니다.
                 </video>
-                <img src="../images/projects/agentq-2.png" alt="AgentQ Desktop approval and workflow screen"
-                    class="main-image">
+                    <figcaption>
+                        <strong>AgentQ 작업 데모</strong>
+                        로컬 프로젝트 분석, 계획 수립, 권한 확인, diff 검토 흐름을 실제 데스크톱 화면으로 보여줍니다.
+                    </figcaption>
+                </figure>
                 <div class="image-gallery">
-                    <img src="../images/projects/agentq-1.png" alt="AgentQ Desktop main screen">
-                    <img src="../images/projects/agentq-3.png" alt="AgentQ Desktop project analysis screen">
-                    <img src="../images/projects/agentq-4.png" alt="AgentQ Desktop memory and tool screen">
+                    <figure class="media-card">
+                        <img src="../images/projects/agentq-2.png" alt="AgentQ Desktop approval and workflow screen">
+                        <figcaption>
+                            <strong>설정과 상태 패널</strong>
+                            모델, 임베딩, 권한 상태와 실행 결과를 한 화면에서 확인할 수 있도록 구성했습니다.
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <img src="../images/projects/agentq-1.png" alt="AgentQ Desktop main screen">
+                        <figcaption>
+                            <strong>대화형 작업 흐름</strong>
+                            사용자의 요청을 기준으로 분석 근거, 계획, 실행 후보를 단계적으로 정리합니다.
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <img src="../images/projects/agentq-3.png" alt="AgentQ Desktop project analysis screen">
+                        <figcaption>
+                            <strong>권한 승인과 변경 검토</strong>
+                            파일 수정 전 승인 창과 diff 내용을 분리해 위험한 자동 수정을 막았습니다.
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <img src="../images/projects/agentq-4.png" alt="AgentQ Desktop memory and tool screen">
+                        <figcaption>
+                            <strong>코드 근거 확인</strong>
+                            실제 파일과 심볼을 근거로 분석 결과를 확인할 수 있는 개발자용 화면입니다.
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
 
