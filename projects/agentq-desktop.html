@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentQ Desktop - Portfolio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0b1020 0%, #1f4f8f 48%, #55d6ff 100%);
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .project-media {
+            margin-bottom: 3rem;
+        }
+
+        .project-video,
+        .main-image {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            background: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .project-video {
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-content {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .project-content h2 {
+            color: #1f4f8f;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 0 0 1.5rem 1.2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-stack .tag {
+            background: linear-gradient(135deg, #dbeafe, #ccfbf1);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .issue-card {
+            border-left: 5px solid #1f4f8f;
+            background: #f5f9ff;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-meta {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="project-container">
+            <a href="../index.html#projects" class="back-btn">
+                <i class="fas fa-arrow-left"></i> 프로젝트 목록으로 돌아가기
+            </a>
+
+            <div class="project-header">
+                <h1>AgentQ Desktop</h1>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar"></i> 2026</span>
+                    <span><i class="fas fa-screwdriver-wrench"></i> 개발 도구</span>
+                    <span><i class="fas fa-code-branch"></i> .NET, WPF, LLM</span>
+                </div>
+            </div>
+
+            <div class="project-media">
+                <video controls autoplay muted playsinline preload="metadata" poster="../images/projects/agentq-2.png"
+                    class="project-video">
+                    <source src="../videos/agentq-test.mp4" type="video/mp4">
+                    브라우저가 동영상 재생을 지원하지 않습니다.
+                </video>
+                <img src="../images/projects/agentq-2.png" alt="AgentQ Desktop approval and workflow screen"
+                    class="main-image">
+                <div class="image-gallery">
+                    <img src="../images/projects/agentq-1.png" alt="AgentQ Desktop main screen">
+                </div>
+            </div>
+
+            <div class="project-content">
+                <h2>프로젝트 소개</h2>
+                <p>AgentQ Desktop은 로컬 프로젝트를 분석하고, 사용자의 요청에 따라 코드 검색, 원인 분석, 파일 수정, 검증 제안까지 수행하는 Windows 데스크톱 AI 코딩 에이전트입니다.</p>
+                <p>Unity/C#/웹 프로젝트를 대상으로 워크스페이스 구조를 수집하고, LLM Tool Calling을 통해 파일 읽기, 검색, 편집, 셸 명령 실행 같은 작업을 권한 기반으로 제어하도록 구현했습니다.</p>
+
+                <h2>주요 기능</h2>
+                <ul class="feature-list">
+                    <li>WPF 기반 Windows 데스크톱 채팅 UI와 CLI 실행 흐름</li>
+                    <li>OpenAI 호환 API, Anthropic API, OpenCode Go 모델을 선택할 수 있는 Provider 추상화</li>
+                    <li>파일 읽기, 파일 수정, grep/glob 검색, 셸 명령, semantic/symbol/hybrid search 도구</li>
+                    <li>파일 수정과 검증 명령 실행 전 사용자 승인 창을 띄우는 HITL 권한 흐름</li>
+                    <li>프로젝트 맵, Evidence 패널, Plan/Memory/Git/Verification 패널을 통한 실행 과정 추적</li>
+                    <li>AI가 변경한 파일을 라인 단위 diff로 검토하고 스냅샷/롤백할 수 있는 변경 검토 흐름</li>
+                    <li>반복되는 오류와 검증 명령을 사용자가 승인한 프로젝트 메모리로 저장하고 다음 실행에 반영하는 학습 흐름</li>
+                </ul>
+
+                <h2>RAG와 검색 구조</h2>
+                <p>키워드 검색만으로 찾기 어려운 코드까지 찾기 위해 프로젝트 파일을 청크로 나누고, OpenAI Embeddings로 로컬 인덱스를 생성하는 구조를 설계했습니다.</p>
+                <p><code>.agentq/embeddings/chunks.jsonl</code>에 청크와 벡터 정보를 저장하고, semantic search 결과를 keyword, symbol, project map 신호와 함께 사용하는 hybrid search 흐름을 구성했습니다.</p>
+                <div class="issue-card">
+                    <p><strong>핵심 포인트:</strong> RAG를 단독 검색으로 쓰는 것이 아니라, 프로젝트 맵, 최근 변경 파일, 키워드 검색, 심볼 검색, 임베딩 유사도 결과를 함께 사용해 대형 코드베이스에서 필요한 맥락만 LLM에 전달하도록 설계했습니다.</p>
+                </div>
+
+                <h2>언어별 워커 구조</h2>
+                <p>AgentQ 본체는 C#/.NET으로 유지하고, JavaScript/TypeScript, Python, C++/Go/Rust 계열 분석은 별도 로컬 worker 프로세스로 분리했습니다.</p>
+                <p>TypeScript worker, Python worker, Native worker가 프로젝트 구조, 심볼, import/dependency graph, 빌드/테스트 명령 후보를 JSON으로 반환하고, AgentQ는 이 결과를 Project Map, RAG, Evidence, Planning UI에 통합합니다.</p>
+
+                <h2>Diff와 검토 시스템</h2>
+                <p>AI가 코드를 바로 덮어쓰지 않도록, 변경 전후 내용을 기반으로 라인 단위 diff를 생성하고 사용자가 변경 내용을 확인할 수 있게 했습니다.</p>
+                <p>파일 변경 기록, Git diff/status 패널, 변경 승인 상태, 스냅샷, 롤백, Tool Replay, Telemetry JSONL을 통해 에이전트의 작업 결과를 추적할 수 있도록 구성했습니다.</p>
+
+                <h2>프로젝트 메모리와 학습</h2>
+                <p>실행 중 발견한 프로젝트 특성, 검증 명령, 반복 실패 패턴을 learning candidate로 제안하고, 사용자가 승인하면 <code>.agentq/memory.local.json</code>에 lesson으로 저장하는 구조를 구현했습니다.</p>
+                <p>저장된 lesson은 다음 요청에서 사용자 입력과 관련도를 계산해 다시 컨텍스트에 포함됩니다. 예를 들어 이전 빌드 실패, 검증 명령, 자주 수정한 파일 같은 정보를 기억해 비슷한 작업에서 더 빠르게 관련 파일과 검증 흐름을 찾도록 설계했습니다.</p>
+                <div class="issue-card">
+                    <p><strong>핵심 포인트:</strong> 에이전트가 임의로 모든 것을 저장하는 방식이 아니라, 민감 정보와 위험한 명령을 필터링하고 사용자가 승인한 학습 후보만 프로젝트 메모리로 남기는 안전한 학습 흐름을 목표로 했습니다.</p>
+                </div>
+
+                <h2>사용 기술</h2>
+                <div class="tech-stack">
+                    <span class="tag">C#</span>
+                    <span class="tag">.NET 10</span>
+                    <span class="tag">WPF</span>
+                    <span class="tag">Windows Desktop App</span>
+                    <span class="tag">CLI Tool</span>
+                    <span class="tag">LLM API</span>
+                    <span class="tag">OpenAI-compatible API</span>
+                    <span class="tag">Anthropic API</span>
+                    <span class="tag">Streaming Response</span>
+                    <span class="tag">Tool Calling</span>
+                    <span class="tag">Function Calling</span>
+                    <span class="tag">Permission Approval UI</span>
+                    <span class="tag">Workspace Analysis</span>
+                    <span class="tag">RAG</span>
+                    <span class="tag">OpenAI Embeddings</span>
+                    <span class="tag">text-embedding-3-small</span>
+                    <span class="tag">Semantic Search</span>
+                    <span class="tag">Hybrid Search</span>
+                    <span class="tag">Symbol Search</span>
+                    <span class="tag">Project Map</span>
+                    <span class="tag">Language Workers</span>
+                    <span class="tag">TypeScript Worker</span>
+                    <span class="tag">Python Worker</span>
+                    <span class="tag">Native Worker</span>
+                    <span class="tag">Dependency Graph</span>
+                    <span class="tag">Vector Similarity</span>
+                    <span class="tag">Local JSONL Vector Cache</span>
+                    <span class="tag">Code Chunking</span>
+                    <span class="tag">Project Memory</span>
+                    <span class="tag">Learning Candidates</span>
+                    <span class="tag">Lesson Ranking</span>
+                    <span class="tag">Failure History</span>
+                    <span class="tag">Line Diff</span>
+                    <span class="tag">File Change Review</span>
+                    <span class="tag">Snapshot/Rollback</span>
+                    <span class="tag">Git Integration</span>
+                    <span class="tag">Telemetry</span>
+                    <span class="tag">Tool Replay</span>
+                    <span class="tag">Roslyn</span>
+                    <span class="tag">MCP Bridge</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">GitHub Actions</span>
+                    <span class="tag">Inno Setup</span>
+                </div>
+
+                <h2>데모 흐름</h2>
+                <p>데모 영상에서는 Unity 프로젝트를 선택한 뒤, 사용자가 컴파일 오류 수정을 요청하면 에이전트가 관련 C# 파일을 읽고 원인을 분석합니다.</p>
+                <p>이후 수정이 필요한 파일에 대해 권한 승인 창을 표시하고, 변경 요약과 검증 제안까지 이어지는 AI 코딩 에이전트 흐름을 보여줍니다.</p>
+
+                <div class="project-links">
+                    <a href="https://github.com/robot0971-art/Agent-Q" class="btn btn-primary" target="_blank"
+                        rel="noopener">
+                        <i class="fab fa-github"></i> GitHub 저장소
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Unity Game Developer Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
