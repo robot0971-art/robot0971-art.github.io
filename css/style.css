@@ -254,6 +254,7 @@ section {
     margin-bottom: 1rem;
     color: var(--text-light);
     line-height: 1.8;
+    white-space: normal;
 }
 
 .about-stats {
