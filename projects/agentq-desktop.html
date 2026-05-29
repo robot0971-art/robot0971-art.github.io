@@ -102,6 +102,7 @@
         .image-gallery img {
             aspect-ratio: 16 / 10;
             object-fit: cover;
+            cursor: zoom-in;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -190,6 +191,49 @@
             margin-bottom: 0;
         }
 
+        .image-lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: rgba(5, 10, 22, 0.88);
+            z-index: 2000;
+        }
+
+        .image-lightbox.is-open {
+            display: flex;
+        }
+
+        .image-lightbox__image {
+            max-width: min(96vw, 1280px);
+            max-height: 86vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+            background: #111827;
+        }
+
+        .image-lightbox__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            color: #111827;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .image-lightbox__close:hover {
+            background: var(--white);
+        }
+
         @media (max-width: 768px) {
             .project-header h1 {
                 font-size: 2rem;
@@ -205,6 +249,10 @@
 
             .project-meta {
                 gap: 1rem;
+            }
+
+            .image-lightbox {
+                padding: 1rem;
             }
         }
     </style>
@@ -377,6 +425,13 @@
         </div>
     </section>
 
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+        <button class="image-lightbox__close" type="button" aria-label="Close image preview">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <img class="image-lightbox__image" src="" alt="">
+    </div>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 Unity Game Developer Portfolio. All rights reserved.</p>
@@ -384,6 +439,48 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = lightbox?.querySelector('.image-lightbox__image');
+            const closeButton = lightbox?.querySelector('.image-lightbox__close');
+            const galleryImages = document.querySelectorAll('.image-gallery img');
+
+            if (!lightbox || !lightboxImage || !closeButton) return;
+
+            const openLightbox = (image) => {
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt || '';
+                lightbox.classList.add('is-open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('is-open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImage.src = '';
+                document.body.style.overflow = '';
+            };
+
+            galleryImages.forEach((image) => {
+                image.addEventListener('click', () => openLightbox(image));
+            });
+
+            closeButton.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
