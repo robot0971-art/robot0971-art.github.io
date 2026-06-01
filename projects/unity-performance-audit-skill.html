@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Performance Audit Skill - Portfolio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 18% 12%, rgba(72, 187, 255, 0.24) 0, rgba(72, 187, 255, 0) 32%),
+                radial-gradient(circle at 82% 18%, rgba(28, 184, 156, 0.26) 0, rgba(28, 184, 156, 0) 30%),
+                linear-gradient(135deg, #d7f0ff 0%, #b6e4f7 46%, #9fe7d5 100%);
+        }
+
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #1f4f8f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            color: #17324d;
+            text-shadow: 0 2px 0 rgba(255, 255, 255, 0.65);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: #31546f;
+            margin-bottom: 2rem;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-media {
+            margin-bottom: 3rem;
+        }
+
+        .media-card {
+            overflow: hidden;
+            border-radius: 14px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(31, 79, 143, 0.08);
+        }
+
+        .media-card.featured {
+            margin-bottom: 1.25rem;
+        }
+
+        .media-card img {
+            width: 100%;
+            display: block;
+            background: #111827;
+        }
+
+        .media-card figcaption {
+            padding: 0.9rem 1rem 1rem;
+            color: var(--text-light);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            background: linear-gradient(135deg, #f8fbff 0%, #f8fffc 100%);
+        }
+
+        .media-card figcaption strong {
+            display: block;
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .image-gallery img {
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .media-card:hover img {
+            transform: translateY(-2px);
+        }
+
+        .project-content {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .project-content h2 {
+            color: #1f4f8f;
+            margin: 2.75rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .project-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 0 0 1.5rem 1.2rem;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #eef7ff 0%, #effdf8 100%);
+            border: 1px solid rgba(31, 79, 143, 0.08);
+            border-radius: 10px;
+            padding: 1.25rem;
+        }
+
+        .insight-card h3 {
+            color: #1f4f8f;
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .insight-card p {
+            margin-bottom: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-stack .tag {
+            background: linear-gradient(135deg, #dbeafe, #ccfbf1);
+        }
+
+        .report-preview {
+            max-height: 480px;
+            overflow-y: auto;
+            background: #0f172a;
+            border: 1px solid #243449;
+            border-radius: 10px;
+            padding: 1.25rem;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .report-preview pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+            color: #e5e7eb;
+            font-family: Consolas, "Noto Sans KR", monospace;
+            font-size: 0.92rem;
+            line-height: 1.75;
+        }
+
+        .report-preview strong,
+        .report-preview code {
+            color: #93c5fd;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .image-lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: rgba(5, 10, 22, 0.88);
+            z-index: 2000;
+        }
+
+        .image-lightbox.is-open {
+            display: flex;
+        }
+
+        .image-lightbox__image {
+            max-width: min(96vw, 1280px);
+            max-height: 86vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+            background: #111827;
+        }
+
+        .image-lightbox__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            color: #111827;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-meta {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html#home" class="nav-logo">Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="project-container">
+            <a href="../index.html#projects" class="back-btn">
+                <i class="fas fa-arrow-left"></i> 프로젝트 목록으로 돌아가기
+            </a>
+
+            <div class="project-header">
+                <h1>Unity Performance Audit Skill</h1>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar"></i> 2026</span>
+                    <span><i class="fas fa-screwdriver-wrench"></i> 개발 도구</span>
+                    <span><i class="fas fa-chart-line"></i> Unity Optimization</span>
+                </div>
+            </div>
+
+            <div class="project-media">
+                <figure class="media-card featured">
+                    <img src="../images/projects/unity-optimize-result.png"
+                        alt="Codex Unity Optimize skill generated a report and static scan evidence">
+                    <figcaption>
+                        <strong>Codex Skill 실행 결과</strong>
+                        Unity 프로젝트를 지정하면 정적 스캔 JSON과 한국어 최적화 리포트를 생성하도록 구성했습니다.
+                    </figcaption>
+                </figure>
+
+                <div class="image-gallery">
+                    <figure class="media-card">
+                        <img src="../images/projects/unity-optimize-report-summary.png"
+                            alt="Unity optimization report summary">
+                        <figcaption>
+                            <strong>리포트 요약</strong>
+                            P0/P1 우선순위와 주요 병목 후보를 표로 정리했습니다.
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <img src="../images/projects/unity-optimize-report-detail.png"
+                            alt="Unity optimization report detail section">
+                        <figcaption>
+                            <strong>세부 분석</strong>
+                            Renderer, LODGroup, MeshCollider 같은 항목별 근거와 검증 방법을 남겼습니다.
+                        </figcaption>
+                    </figure>
+                    <figure class="media-card">
+                        <img src="../images/projects/unity-optimize-checklist.png"
+                            alt="Unity optimization profiler checklist and quick fixes">
+                        <figcaption>
+                            <strong>검증 체크리스트</strong>
+                            Profiler, Frame Debugger, Build Report로 후속 검증할 항목을 분리했습니다.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <h2>프로젝트 소개</h2>
+                <p>Unity Performance Audit Skill은 Codex에서 Unity 프로젝트를 분석할 때 사용하는 최적화 감사용 스킬입니다. 프로젝트 파일, 에셋 메타데이터,
+                    스크립트 패턴, 빌드 크기 후보를 정적으로 스캔하고, 사람이 바로 검토할 수 있는 Markdown 리포트로 정리합니다.</p>
+                <p>Dino Grow 3D 프로젝트에 적용해 맵 크기, Renderer 수, LODGroup 누락, MeshCollider 사용량, 대형 텍스처, UI Mask 위험, 오디오
+                    로드 타입 같은 항목을 우선순위 기반으로 분류했습니다.</p>
+
+                <h2>개발 배경</h2>
+                <p>Unity 프로젝트 최적화는 Profiler를 켜기 전에도 먼저 확인해야 할 반복 항목이 많습니다. 대형 텍스처, 불필요한 MeshCollider, LOD 누락,
+                    샘플 에셋의 빌드 포함 여부, UI Mask 과다 사용처럼 프로젝트 파일만 훑어도 위험 후보를 빠르게 좁힐 수 있는 부분이 있습니다.</p>
+                <p>이 스킬은 그런 초기 점검 과정을 자동화하기 위해 만들었습니다. Codex가 프로젝트를 읽고 바로 결론을 내리는 방식이 아니라, Python 정적 스캐너가 JSON
+                    증거를 만들고, Skill 지침이 그 증거를 바탕으로 영향도와 검증 방법을 정리하도록 설계했습니다.</p>
+
+                <h2>설계 포인트</h2>
+                <div class="insight-grid">
+                    <div class="insight-card">
+                        <h3>근거 기반 리포트</h3>
+                        <p>각 발견 사항에 파일 경로, 개수, 크기, 신뢰도, 영향도, 후속 검증 방법을 붙여 검토 가능한 보고서가 되도록 했습니다.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>정적 분석과 프로파일링 분리</h3>
+                        <p>정적 스캔으로 의심 지점을 찾고, 실제 병목 여부는 Unity Profiler, Frame Debugger, Memory Profiler에서 확인하도록 분리했습니다.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Unity 도메인별 점검</h3>
+                        <p>렌더링, 물리, 텍스처, 오디오, UI, Addressables, 빌드 크기처럼 Unity 프로젝트에서 자주 문제 되는 영역을 나눠 분석합니다.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>수정 후보 분류</h3>
+                        <p>자동 수정이 가능한 후보와 아트/기획 판단이 필요한 항목을 구분해, 무작정 고치는 도구가 아니라 리뷰를 돕는 도구로 만들었습니다.</p>
+                    </div>
+                </div>
+
+                <h2>핵심 기능</h2>
+                <ul class="feature-list">
+                    <li>Unity 프로젝트 구조와 주요 에셋 경로를 정적 스캔</li>
+                    <li>렌더링, 물리, 텍스처, UI, 오디오, Addressables, 빌드 크기 위험 후보 탐지</li>
+                    <li>P0-P3 우선순위, 영향도, 신뢰도, 작업 난이도를 포함한 리포트 생성</li>
+                    <li>자동 수정 후보와 사람이 직접 검증해야 할 항목을 분리</li>
+                    <li>Profiler, Frame Debugger, Memory Profiler로 확인할 후속 체크리스트 제공</li>
+                </ul>
+
+                <h2>적용 사례</h2>
+                <p>Dino Grow 3D 프로젝트에 적용했을 때, 큰 맵 씬과 청크 에셋이 빌드 크기와 로딩 시간에 영향을 줄 수 있다는 점을 P0로 분류했습니다. 또한
+                    Renderer 3,232개 대비 LODGroup이 0개라는 점, MeshCollider 731개, Mask 3,629개 같은 수치를 근거로 후속 최적화 우선순위를
+                    정리했습니다.</p>
+                <p>이 결과는 바로 수정 명령으로 이어지는 것이 아니라, 실제 Game View 이동 경로에서 Rendering Stats를 비교하고, Physics Profiler로
+                    FixedUpdate 비용을 확인하며, Build Report로 포함 에셋 크기를 검증하는 체크리스트로 이어지게 했습니다.</p>
+
+                <h2>실제 분석 리포트 미리보기</h2>
+                <div class="report-preview" aria-label="Unity optimization report preview">
+                    <pre># Dino Grow 3D Unity 최적화 분석 보고서
+
+- 프로젝트: C:\Users\woo53\OneDrive\바탕 화면\Dinosaur
+- 날짜: 2026-06-01
+- 분석 모드: Static only
+- 증거: Docs/Optimization/unity-static-scan.json
+
+## 요약
+
+| 영역 | 우선순위 | 요약 |
+| --- | --- | --- |
+| 맵/빌드 크기 | P0 | map10.unity 74.5MB, Map4 청크 에셋 70.9MB급 다수, Map7 청크 에셋 10MB급 다수 |
+| 렌더링/드로우콜 | P1 | Renderer 3,232개, Material 참조 63종, LODGroup 0개 |
+| 물리 | P1 | Collider 1,961개, MeshCollider 731개로 정적 맵 충돌 비용 검증 필요 |
+| 텍스처 | P1 | 플래그된 텍스처 232개, 2048급 대형 텍스처, EXR/TGA 다수 |
+| UI | P1 | Canvas 31개, Mask 3,629개, Image 21개, UI 오버드로우 검증 필요 |
+| 런타임 생성/삭제 | P2 | EnemySpawner, 하트 드롭, VFX, 사운드에 Instantiate/Destroy 경로 존재 |
+| 오디오 | P2 | BGM/SFX 일부가 Decompress on Load 후보, 긴 BGM은 Streaming 검토 필요 |
+| Addressables | P2 | 미사용 상태. 큰 맵/선택형 에셋 로딩 경계가 생기면 도입 후보 |
+
+## 우선 발견 사항
+
+### 1. 대형 맵/청크 에셋이 빌드 크기와 로딩 시간을 크게 밀 가능성
+
+- 증거: Assets/Scenes/map10.unity 74.5MB, Assets/Scenes/map7.unity 66.7MB
+- 증거: Assets/GameData/Generated/Map4GroundChunks/Map4_GroundChunk_* 70.9MB급 에셋 다수
+- 증거 출처: static scan
+- 영향: High
+- 신뢰도: High
+- 노력: Medium
+- 우선순위: P0
+- 수정 유형: manual review / requires profiling
+- 권장:
+  - 실제 빌드 리포트에서 씬별/에셋별 포함 크기를 먼저 확인한다.
+  - Map4/Map7/Map10이 동시에 빌드에 포함되어야 하는지 점검한다.
+  - 큰 맵 청크는 직접 포함, Addressables, additive scene streaming 중 하나로 로딩 경계를 명확히 나눈다.
+  - 사용하지 않는 샘플/데모 씬과 대형 원본 에셋은 빌드 포함 경로에서 분리한다.
+
+### 2. Renderer는 많지만 LODGroup이 없어 원거리 장식 비용이 남을 수 있음
+
+- 증거: Renderer 3,232개, LODGroup 0개
+- 증거 출처: static scan
+- 영향: High
+- 신뢰도: Medium
+- 노력: Medium
+- 우선순위: P1
+- 수정 유형: batch-edit candidate / manual art review
+- 권장:
+  - 나무, 바위, 풀, 장식 프리팹에 LOD 또는 billboarding을 우선 적용한다.
+  - 공룡처럼 가까이서 봐야 하는 스킨드 캐릭터보다 반복 배치되는 환경 오브젝트를 먼저 본다.
+  - URP 환경에서는 SRP Batcher, GPU Instancing, shared material 정리를 같이 확인한다.
+
+### 3. MeshCollider가 많아 물리/메모리 비용 위험이 있음
+
+- 증거: Collider 1,961개, MeshCollider 731개, Rigidbody 6개
+- 증거 출처: static scan
+- 영향: Medium-High
+- 신뢰도: Medium
+- 노력: Medium
+- 우선순위: P1
+- 수정 유형: manual review
+- 권장:
+  - 정적 맵 장식은 충돌이 필요한 것만 남기고 가능한 Box/Sphere/Capsule/단순 convex 대체 collider로 바꾼다.
+  - 작은 장식, 배경용 풀/꽃 쪽 collider 제거 후보를 분류한다.
+  - 레이어 충돌 매트릭스에서 Player/Enemy/Ground/Pickup/Decoration 간 불필요한 충돌을 끈다.
+
+## Profiler 체크리스트
+
+| 측정 | 확인 지표 | 목적 |
+| --- | --- | --- |
+| CPU Timeline/Hierarchy | Main Thread, Scripts, GC Alloc | 이동/AI/UI/VFX 병목 확인 |
+| Rendering Stats | Batches, SetPass, Triangles, Shadow casters | LOD/머티리얼/인스턴싱 효과 확인 |
+| GPU Profiler/Frame Debugger | Pass 수, Overdraw, Transparent draw | Blood VFX/UI/물 셰이더 비용 확인 |
+| Memory Profiler | Texture/Mesh/Audio/Managed heap | 대형 맵 청크/폰트/텍스처 상주 메모리 확인 |
+| Physics Profiler | Simulation time, Contacts, Queries | MeshCollider와 레이어 충돌 비용 확인 |
+| Build Report | 에셋별 빌드 크기 | Map4/7/10, 데모 에셋 포함 여부 확인 |
+
+## 빠른 개선 후보
+
+1. Build Settings에 들어간 map4, map7, map10이 첫 버전 빌드에 모두 필요한지 확인한다.
+2. 데모/샘플 에셋 폴더를 실제 빌드 참조에서 분리한다.
+3. BGM 로드 타입을 Streaming/Compressed In Memory로 검토한다.
+4. 큰 지형/skybox/VFX 텍스처에 플랫폼별 max size와 compression override를 둔다.
+5. 반복 환경 프리팹용 LODGroup 또는 billboard 대체안을 만든다.
+6. MeshCollider가 붙은 장식 오브젝트를 collider 제거/단순 collider 교체 후보로 분류한다.</pre>
+                </div>
+
+                <h2>사용 기술</h2>
+                <div class="tech-stack">
+                    <span class="tag">Unity</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Codex Skill</span>
+                    <span class="tag">Static Analysis</span>
+                    <span class="tag">Markdown Report</span>
+                    <span class="tag">Profiler Workflow</span>
+                    <span class="tag">Optimization Audit</span>
+                </div>
+
+                <h2>한계와 개선 방향</h2>
+                <p>정적 분석만으로는 실제 프레임 타임, 발열, GPU fill-rate, 오버드로우, 메모리 상주량을 확정할 수 없습니다. 그래서 리포트에는 항상
+                    Profiler 검증 항목을 남기고, 수치가 실제 병목인지 확인하는 절차를 함께 제시했습니다.</p>
+                <p>다음 개선 방향은 Unity MCP나 Profiler 스냅샷이 연결된 상태에서 현재 씬의 draw call, triangle, memory counter를 함께 수집해
+                    정적 분석 결과의 신뢰도를 더 높이는 것입니다.</p>
+
+                <div class="project-links">
+                    <a href="https://github.com/robot0971-art/unity-performance-audit-skill" class="btn btn-primary"
+                        target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> GitHub 저장소
+                    </a>
+                    <a href="../index.html#projects" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> 프로젝트 목록
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+        <button class="image-lightbox__close" type="button" aria-label="Close image preview">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <img class="image-lightbox__image" src="" alt="">
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Unity Game Developer Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = lightbox?.querySelector('.image-lightbox__image');
+            const closeButton = lightbox?.querySelector('.image-lightbox__close');
+            const galleryImages = document.querySelectorAll('.image-gallery img');
+
+            if (!lightbox || !lightboxImage || !closeButton) return;
+
+            const openLightbox = (image) => {
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt || '';
+                lightbox.classList.add('is-open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('is-open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImage.src = '';
+                document.body.style.overflow = '';
+            };
+
+            galleryImages.forEach((image) => {
+                image.addEventListener('click', () => openLightbox(image));
+            });
+
+            closeButton.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
