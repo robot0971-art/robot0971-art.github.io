@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Evolution - Portfolio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f7df7e 0%, #8fd3a4 48%, #84a9ff 100%);
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.18);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.96);
+            margin-bottom: 2rem;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .project-media {
+            margin-bottom: 3rem;
+        }
+
+        .project-video,
+        .main-image {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            background: #111;
+            margin-bottom: 1rem;
+        }
+
+        .main-image {
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            background: #111;
+        }
+
+        .project-content {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .project-content h2 {
+            color: #4f8a5f;
+            margin-top: 2.4rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .project-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 0 0 1.5rem 1.2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-stack .tag {
+            background: linear-gradient(135deg, #f7df7e, #8fd3a4);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .media-links {
+            justify-content: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-meta {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="project-container">
+            <a href="../index.html#projects" class="back-btn">
+                <i class="fas fa-arrow-left"></i> 프로젝트 목록으로 돌아가기
+            </a>
+
+            <div class="project-header">
+                <h1>Dino Evolution</h1>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar"></i> 2026</span>
+                    <span><i class="fas fa-user"></i> 팀 프로젝트 / 리드 프로그래머</span>
+                    <span><i class="fas fa-code-branch"></i> Unity 6, C#</span>
+                </div>
+            </div>
+
+            <div class="project-media">
+                <video class="project-video" controls preload="metadata" poster="../images/projects/dino-evolution-title.png">
+                    <source src="../videos/sequence-01-1080p60-web.mp4" type="video/mp4">
+                    브라우저가 비디오 태그를 지원하지 않습니다.
+                </video>
+                <div class="project-links media-links">
+                    <a href="../videos/sequence-01-1080p60-web.mp4" class="btn btn-primary" target="_blank" rel="noopener">
+                        <i class="fas fa-play"></i> 데모 영상 보기
+                    </a>
+                </div>
+                <img src="../images/projects/dino-evolution-title.png" alt="Dino Evolution title screen" class="main-image">
+                <div class="image-gallery">
+                    <img src="../images/projects/dino-evolution-loading.png" alt="Dino Evolution loading screen">
+                    <img src="../images/projects/dino-evolution-map-select.png" alt="Dino Evolution map select screen">
+                    <img src="../images/projects/dino-evolution-stage.png" alt="Dino Evolution stage screen">
+                    <img src="../images/projects/dino-evolution-ui.png" alt="Dino Evolution HUD screen">
+                    <img src="../images/projects/dino-evolution-gameplay.png" alt="Dino Evolution gameplay screen">
+                    <img src="../images/projects/dino-evolution-gameover.png" alt="Dino Evolution game over screen">
+                </div>
+            </div>
+
+            <div class="project-content">
+                <h2>프로젝트 소개</h2>
+                <p>
+                    Dino Evolution은 작은 공룡으로 시작해 낮은 레벨 또는 같은 레벨의 공룡을 먹고 성장하는
+                    3D 3인칭 액션 게임입니다. 플레이어는 먹을 수 있는 대상을 빠르게 판단하고, 높은 레벨의
+                    공룡과 충돌하면 즉시 게임오버되는 단순하지만 명확한 위험 구조 안에서 레벨 20 달성을 목표로 합니다.
+                </p>
+                <p>
+                    팀 프로젝트에서 리드 프로그래머를 맡아 핵심 게임 규칙과 성장 구조를 설계하고, 브랜치 병합과 코드 정리를
+                    주도했습니다. Core 로직, 애니메이션 연동, 기타 Gameplay 로직, 포스트 프로세싱, 최적화 작업을 담당하며
+                    프로젝트의 기능 구현과 안정화 흐름을 맞췄습니다.
+                </p>
+
+                <h2>주요 구현</h2>
+                <ul class="feature-list">
+                    <li>플레이어 레벨과 적 레벨을 비교해 먹기 성공 또는 게임오버를 판정하는 EatResolver 구현</li>
+                    <li>EXP 획득, 레벨업, 최대 레벨 도달 여부를 관리하는 GrowthSystem 구성</li>
+                    <li>스테이지별 적 스폰 데이터와 행동 규칙을 분리한 스폰/AI 구조 설계</li>
+                    <li>팀원 작업 브랜치 병합, 충돌 해결, 기능 통합 과정 관리</li>
+                    <li>레벨, EXP, 하트, 위험 경고, 게임오버, 재시작 흐름을 표시하는 HUD 시스템 구현</li>
+                    <li>Cinemachine 기반 3인칭 카메라와 공룡 애니메이션 연동</li>
+                    <li>분위기와 화면 완성도를 높이기 위한 포스트 프로세싱 적용</li>
+                    <li>이펙트와 드롭 아이템 재사용을 위한 런타임 풀링 구조 적용</li>
+                </ul>
+
+                <h2>사용 기술</h2>
+                <div class="tech-stack">
+                    <span class="tag">Unity 6</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">URP</span>
+                    <span class="tag">Cinemachine</span>
+                    <span class="tag">Post Processing</span>
+                    <span class="tag">Input System</span>
+                    <span class="tag">3D Action</span>
+                    <span class="tag">Object Pooling</span>
+                    <span class="tag">GPU Instancing</span>
+                    <span class="tag">Mesh Combine</span>
+                    <span class="tag">LOD</span>
+                    <span class="tag">Mipmap</span>
+                    <span class="tag">Timeline</span>
+                    <span class="tag">Unity Profiler</span>
+                    <span class="tag">Optimization Audit</span>
+                </div>
+
+                <h2>개발 포인트</h2>
+                <p>
+                    첫 버전은 복잡한 전투 시스템보다 성장 판단을 즉시 이해할 수 있는 규칙에 집중했습니다.
+                    체력, 방어, 공격 버튼 없이 충돌 기반 먹기와 레벨 비교만으로 플레이 흐름을 만들고,
+                    이후 스테이지, 적 행동, UI 피드백을 덧붙일 수 있도록 Core 로직과 Gameplay 표현 계층을 분리했습니다.
+                </p>
+                <p>
+                    데이터 레코드와 데이터베이스 클래스를 활용해 공룡, 성장, 스폰, 스테이지 정보를 관리하도록 구성했으며,
+                    애니메이션 상태 전환과 게임 로직이 자연스럽게 이어지도록 캐릭터 제어 흐름을 정리했습니다.
+                    팀원들이 만든 기능은 브랜치 병합 과정에서 충돌을 해결하고, 실제 게임 흐름 안에서 동작하도록 통합했습니다.
+                </p>
+                <p>
+                    화면 연출에서는 포스트 프로세싱을 적용해 맵 분위기와 색감을 보강하고, 카메라 구도와 HUD 가독성을 함께 조정했습니다.
+                    단순히 기능을 붙이는 것보다 플레이어가 성장, 위험, 게임오버 상태를 즉시 이해할 수 있도록 시각 피드백을 정리하는 데 집중했습니다.
+                </p>
+                <p>
+                    프로젝트 후반에는 정적 스캔과 Unity 성능 점검 리포트를 통해 텍스처 용량, Resources 폴더 사용,
+                    MeshCollider 수, LODGroup 부재, UI Canvas 구성, VFX 셰이더 비용 같은 최적화 이슈를 정리했습니다.
+                    빌드 크기와 런타임 부하를 줄이기 위해 사용하지 않는 샘플 에셋 정리, 텍스처 import 설정 조정,
+                    충돌 레이어 매트릭스 정리, 반복 오브젝트 LOD 적용을 개선 항목으로 도출했습니다.
+                </p>
+                <p>
+                    반복 배치되는 배경 오브젝트는 GPU Instancing과 Mesh Combine 적용 대상을 구분해 드로우콜을 줄이는 방향으로
+                    점검했습니다. 멀리 있는 장식물과 지형 소품은 LOD를 적용하고, 시야에서 중요하지 않은 오브젝트는 Shadow Cast를
+                    끄거나 거리별 그림자 품질을 낮추는 방식으로 GPU 비용을 줄일 수 있도록 정리했습니다. 텍스처는 용도에 따라
+                    Mipmap 사용 여부와 최대 해상도를 조정해 원거리 샘플링 품질과 메모리 사용량의 균형을 맞추는 기준을 세웠습니다.
+                </p>
+
+                <h2>배운 점</h2>
+                <p>
+                    작은 규칙이라도 시스템 경계를 먼저 나누면 UI, 카메라, 이펙트, 스폰 로직을 붙일 때 변경 범위가 줄어든다는 점을
+                    확인했습니다. 또한 포트폴리오 영상 기준으로는 플레이 규칙이 한눈에 보이도록 HUD와 카메라 구도를 정리하는 것이
+                    구현만큼 중요하다는 점을 배웠습니다.
+                </p>
+                <p>
+                    팀 프로젝트에서는 기능을 많이 구현하는 것만큼 브랜치 병합, 코드 충돌 해결, 구현 스타일 정리도 중요하다는 것을 배웠습니다.
+                    리드 프로그래머 역할을 맡으면서 Core 로직의 기준을 잡고, 팀원 작업물이 같은 게임 흐름 안에서 자연스럽게 이어지도록
+                    통합하는 경험을 쌓았습니다.
+                </p>
+                <p>
+                    기능 구현 이후에는 “잘 돌아가는가”뿐 아니라 “가볍게 유지되는가”를 함께 확인해야 한다는 점도 배웠습니다.
+                    특히 3D 프로젝트에서는 텍스처, 콜라이더, 투명 VFX, UI rebuild처럼 눈에 잘 보이지 않는 요소가 성능에 큰 영향을 줄 수 있어,
+                    Profiler와 Frame Debugger로 기준값을 잡고 개선 전후를 비교하는 과정이 필요하다는 것을 체감했습니다.
+                </p>
+                <p>
+                    같은 최적화 기법이라도 모든 오브젝트에 일괄 적용하는 것보다, 반복 렌더링되는 소품은 GPU Instancing,
+                    정적인 군집 오브젝트는 Mesh Combine, 먼 거리 오브젝트는 LOD, 불필요한 그림자는 Shadow Cast 제한처럼
+                    상황별로 선택해야 효과가 크다는 점을 배웠습니다.
+                </p>
+
+                <div class="project-links">
+                    <a href="https://github.com/robot0971-art/Dinosaur" class="btn btn-primary" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> GitHub 저장소
+                    </a>
+                    <a href="../index.html#projects" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> 목록으로 돌아가기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
