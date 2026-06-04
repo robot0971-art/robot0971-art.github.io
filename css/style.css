@@ -413,12 +413,29 @@ section {
     box-shadow: var(--shadow-hover);
 }
 
+.project-card-featured {
+    border: 1px solid rgba(57, 95, 147, 0.16);
+    box-shadow: 0 14px 34px rgba(57, 95, 147, 0.14);
+}
+
+.project-card-featured:hover {
+    box-shadow: 0 20px 46px rgba(57, 95, 147, 0.22);
+}
+
 .project-image {
     position: relative;
     height: 200px;
     overflow: hidden;
     background: linear-gradient(135deg, var(--pastel-yellow), var(--pastel-pink));
     flex-shrink: 0;
+}
+
+.project-image-document {
+    height: 230px;
+    padding: 16px 18px 0;
+    background:
+        radial-gradient(circle at 12% 16%, rgba(169, 232, 216, 0.55), transparent 32%),
+        linear-gradient(135deg, #172033 0%, #395f93 58%, #eef7ff 100%);
 }
 
 .project-image img {
@@ -429,8 +446,34 @@ section {
     display: block;
 }
 
+.project-image-document img {
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.28);
+}
+
 .project-card:hover .project-image img {
     transform: scale(1.1);
+}
+
+.project-card:hover .project-image-document img {
+    transform: translateY(-4px) scale(1.03);
+}
+
+.project-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    padding: 6px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #243449;
+    font-size: 0.78rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
 }
 
 .project-overlay {
@@ -465,6 +508,16 @@ section {
     flex-shrink: 0;
 }
 
+.project-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+    color: #395f93;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
 .project-info p {
     color: var(--text-light);
     margin-bottom: 1rem;
@@ -474,6 +527,39 @@ section {
     -webkit-box-orient: vertical;
     overflow: hidden;
     flex-shrink: 0;
+}
+
+.project-card-ralfton .project-info > p:not(.project-summary) {
+    display: none;
+}
+
+.project-card-ralfton .project-summary {
+    -webkit-line-clamp: 5;
+}
+
+.project-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0.15rem 0 1rem;
+}
+
+.project-highlights span {
+    min-width: 0;
+    padding: 0.65rem 0.45rem;
+    border: 1px solid rgba(57, 95, 147, 0.12);
+    border-radius: 10px;
+    background: linear-gradient(135deg, #eef7ff 0%, #effdf8 100%);
+    color: #5f6f83;
+    font-size: 0.74rem;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.project-highlights strong {
+    display: block;
+    color: #243449;
+    font-size: 1rem;
 }
 
 .project-tags {
