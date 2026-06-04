@@ -131,36 +131,79 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    const mailMenuToggle = document.querySelector('.mail-menu-toggle');
+    const mailServiceMenu = document.querySelector('.mail-service-menu');
     const copyButtons = document.querySelectorAll('.contact-copy-btn');
+    const mailLinks = document.querySelectorAll('.contact-mail-link');
+
+    const setMailMenu = (isOpen) => {
+        if (!mailMenuToggle || !mailServiceMenu) return;
+
+        mailMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        mailServiceMenu.setAttribute('aria-hidden', String(!isOpen));
+        mailServiceMenu.classList.toggle('active', isOpen);
+    };
+
+    const showContactFeedback = (element, message) => {
+        const feedback = element.closest('.contact-card')?.querySelector('.copy-feedback');
+        if (!feedback) return;
+
+        feedback.textContent = message;
+        window.setTimeout(() => {
+            feedback.textContent = '';
+        }, 2200);
+    };
+
+    const copyText = async (value) => {
+        try {
+            await navigator.clipboard.writeText(value);
+        } catch (error) {
+            const textarea = document.createElement('textarea');
+            textarea.value = value;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+        }
+    };
+
+    mailMenuToggle?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = mailMenuToggle.getAttribute('aria-expanded') === 'true';
+        setMailMenu(!isOpen);
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!mailServiceMenu?.classList.contains('active')) return;
+        if (mailServiceMenu.contains(event.target) || mailMenuToggle?.contains(event.target)) return;
+
+        setMailMenu(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setMailMenu(false);
+        }
+    });
 
     copyButtons.forEach(button => {
         button.addEventListener('click', async () => {
             const value = button.getAttribute('data-copy') || '';
-            const feedback = button.closest('.contact-card')?.querySelector('.copy-feedback');
-            const showFeedback = (message) => {
-                if (!feedback) return;
+            await copyText(value);
+            showContactFeedback(button, '이메일이 복사되었습니다.');
+            setMailMenu(false);
+        });
+    });
 
-                feedback.textContent = message;
-                window.setTimeout(() => {
-                    feedback.textContent = '';
-                }, 2000);
-            };
-
-            showFeedback('이메일이 복사되었습니다.');
-
-            try {
-                await navigator.clipboard.writeText(value);
-            } catch (error) {
-                const textarea = document.createElement('textarea');
-                textarea.value = value;
-                textarea.setAttribute('readonly', '');
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                textarea.remove();
-            }
+    mailLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const value = link.getAttribute('data-copy') || '';
+            copyText(value);
+            showContactFeedback(link, '이메일을 복사한 뒤 메일 서비스를 열었습니다.');
+            setMailMenu(false);
         });
     });
 

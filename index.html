@@ -300,9 +300,38 @@
                         <h4>Email</h4>
                         <p id="contactEmail">robot0971@gmail.com</p>
                         <div class="contact-buttons">
-                            <a href="mailto:robot0971@gmail.com" class="btn btn-primary">메일 보내기</a>
-                            <button type="button" class="btn btn-secondary contact-copy-btn"
-                                data-copy="robot0971@gmail.com">복사</button>
+                            <button type="button" class="btn btn-primary mail-menu-toggle" aria-expanded="false"
+                                aria-controls="mailServiceMenu">
+                                메일 보내기
+                            </button>
+                            <div class="mail-service-menu" id="mailServiceMenu" aria-hidden="true">
+                                <button type="button" class="mail-service-option contact-copy-btn"
+                                    data-copy="robot0971@gmail.com">
+                                    <i class="fas fa-copy"></i> 이메일 복사
+                                </button>
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=robot0971%40gmail.com"
+                                    class="mail-service-option contact-mail-link" data-copy="robot0971@gmail.com"
+                                    target="_blank" rel="noopener">
+                                    <i class="fab fa-google"></i> Gmail
+                                </a>
+                                <a href="https://mail.naver.com/" class="mail-service-option contact-mail-link"
+                                    data-copy="robot0971@gmail.com" target="_blank" rel="noopener">
+                                    <span class="mail-service-letter">N</span> Naver Mail
+                                </a>
+                                <a href="https://mail.daum.net/" class="mail-service-option contact-mail-link"
+                                    data-copy="robot0971@gmail.com" target="_blank" rel="noopener">
+                                    <span class="mail-service-letter">D</span> Daum Mail
+                                </a>
+                                <a href="https://outlook.live.com/mail/0/deeplink/compose?to=robot0971%40gmail.com"
+                                    class="mail-service-option contact-mail-link" data-copy="robot0971@gmail.com"
+                                    target="_blank" rel="noopener">
+                                    <i class="fab fa-microsoft"></i> Outlook
+                                </a>
+                                <a href="mailto:robot0971@gmail.com" class="mail-service-option contact-mail-link"
+                                    data-copy="robot0971@gmail.com">
+                                    <i class="fas fa-envelope-open-text"></i> 기본 메일 앱
+                                </a>
+                            </div>
                         </div>
                         <span class="copy-feedback" aria-live="polite"></span>
                     </div>

@@ -557,6 +557,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+    position: relative;
 }
 
 .contact-buttons .btn {
@@ -574,6 +575,64 @@ section {
 .contact-copy-btn:hover {
     background: var(--pastel-purple);
     color: var(--white);
+}
+
+.mail-menu-toggle {
+    min-width: 132px;
+}
+
+.mail-service-menu {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 0;
+    z-index: 20;
+    display: none;
+    width: min(260px, 82vw);
+    padding: 0.6rem;
+    border: 1px solid rgba(221, 187, 240, 0.55);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow-hover);
+}
+
+.mail-service-menu.active {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.mail-service-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    padding: 0.75rem 0.85rem;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-dark);
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mail-service-option:hover {
+    background: linear-gradient(135deg, var(--pastel-yellow), var(--pastel-pink));
+    color: var(--text-dark);
+}
+
+.mail-service-option i,
+.mail-service-letter {
+    width: 20px;
+    color: var(--pastel-purple);
+    font-size: 1rem;
+}
+
+.mail-service-letter {
+    display: inline-block;
+    font-weight: 700;
+    text-align: center;
 }
 
 .copy-feedback {
