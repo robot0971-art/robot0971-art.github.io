@@ -162,6 +162,12 @@
             flex-wrap: wrap;
         }
 
+        .media-links {
+            justify-content: center;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
         .back-btn {
             display: inline-block;
             margin-bottom: 2rem;
@@ -299,6 +305,11 @@
                     <source src="../videos/agentq-test.mp4" type="video/mp4">
                     브라우저가 동영상 재생을 지원하지 않습니다.
                 </video>
+                    <div class="project-links media-links">
+                        <a href="../videos/agentq-test.mp4" class="btn btn-primary" target="_blank" rel="noopener">
+                            <i class="fas fa-play"></i> 데모 영상 보기
+                        </a>
+                    </div>
                     <figcaption>
                         <strong>AgentQ 작업 데모</strong>
                         로컬 프로젝트 분석, 계획 수립, 권한 확인, diff 검토 흐름을 실제 데스크톱 화면으로 보여줍니다.
