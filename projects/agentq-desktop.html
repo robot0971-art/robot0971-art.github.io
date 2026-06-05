@@ -162,6 +162,18 @@
             flex-wrap: wrap;
         }
 
+        .project-content .btn-document {
+            background: #1f4f8f;
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .project-content .btn-document:hover {
+            background: #173d70;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
         .media-links {
             justify-content: center;
             margin-top: 1.5rem;
@@ -480,6 +492,12 @@
                     </div>
                 </div>
 
+                <div class="project-links">
+                    <a href="agentq-architecture.html" class="btn btn-document">
+                        <i class="fas fa-diagram-project"></i> 아키텍처 문서 보기
+                    </a>
+                </div>
+
                 <h2>RAG와 검색 구조</h2>
                 <p>키워드 검색만으로 찾기 어려운 코드까지 찾기 위해 프로젝트 파일을 청크로 나누고, OpenAI Embeddings로 로컬 인덱스를 생성하는 구조를 설계했습니다.</p>
                 <p><code>.agentq/embeddings/chunks.jsonl</code>에 청크와 벡터 정보를 저장하고, semantic search 결과를 keyword, symbol,
@@ -542,9 +560,6 @@
                 <p>이후 수정이 필요한 파일에 대해 권한 승인 창을 표시하고, 변경 요약과 검증 제안까지 이어지는 AI 코딩 에이전트 흐름을 보여줍니다.</p>
 
                 <div class="project-links">
-                    <a href="agentq-architecture.html" class="btn btn-secondary">
-                        <i class="fas fa-diagram-project"></i> 아키텍처 문서 보기
-                    </a>
                     <a href="https://github.com/robot0971-art/Agent-Q" class="btn btn-primary" target="_blank"
                         rel="noopener">
                         <i class="fab fa-github"></i> GitHub 저장소
