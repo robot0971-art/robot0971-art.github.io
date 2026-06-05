@@ -197,6 +197,72 @@
             margin-bottom: 0;
         }
 
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .architecture-card {
+            box-sizing: border-box;
+            min-height: 164px;
+            padding: 1.2rem;
+            border: 1px solid rgba(31, 79, 143, 0.12);
+            border-radius: 12px;
+            background: linear-gradient(135deg, #eef7ff 0%, #effdf8 100%);
+        }
+
+        .architecture-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            color: var(--text-dark);
+            margin-bottom: 0.65rem;
+            font-size: 1.05rem;
+        }
+
+        .architecture-card h3 i {
+            color: #1f4f8f;
+            width: 20px;
+            text-align: center;
+        }
+
+        .architecture-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .layer-map {
+            display: grid;
+            gap: 0.55rem;
+            margin: 1rem 0 2.5rem;
+            padding: 1rem;
+            border: 1px solid rgba(31, 79, 143, 0.12);
+            border-radius: 12px;
+            background: #f8fbff;
+        }
+
+        .layer-row {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 0.75rem;
+            align-items: center;
+            padding: 0.7rem 0.85rem;
+            border-radius: 10px;
+            background: var(--white);
+            box-shadow: 0 6px 14px rgba(31, 79, 143, 0.06);
+        }
+
+        .layer-row strong {
+            color: #1f4f8f;
+        }
+
+        .layer-row span {
+            color: var(--text-light);
+            line-height: 1.55;
+        }
+
         .image-lightbox {
             position: fixed;
             inset: 0;
@@ -251,6 +317,15 @@
 
             .image-gallery {
                 grid-template-columns: 1fr;
+            }
+
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .layer-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
             }
 
             .project-meta {
@@ -364,6 +439,46 @@
                     <li>AI가 변경한 파일을 라인 단위 diff로 검토하고 스냅샷/롤백할 수 있는 변경 검토 흐름</li>
                     <li>반복되는 오류와 검증 명령을 사용자가 승인한 프로젝트 메모리로 저장하고 다음 실행에 반영하는 학습 흐름</li>
                 </ul>
+
+                <h2>아키텍처 요약</h2>
+                <p>AgentQ는 단순한 채팅 래퍼가 아니라, 계약 계층, Provider 추상화, 도구 실행 루프, 데스크톱 서비스 계층을 분리해 실제 개발 작업 흐름을 관리하도록 설계했습니다.</p>
+                <div class="layer-map" aria-label="AgentQ 계층 구조">
+                    <div class="layer-row">
+                        <strong>AgentQ.Api</strong>
+                        <span>ToolDefinition, MessageRequest, StreamEvents 등 모듈 간 공유 계약을 담당합니다.</span>
+                    </div>
+                    <div class="layer-row">
+                        <strong>AgentQ.Core</strong>
+                        <span>LLM Provider 인터페이스, 설정 로더, 대화 모델, 스트리밍 도구 호출 조립을 담당합니다.</span>
+                    </div>
+                    <div class="layer-row">
+                        <strong>Providers / Tools</strong>
+                        <span>OpenAI 호환 Provider, Anthropic Provider, 파일/검색/셸/데스크톱 전용 도구를 플러그인처럼 연결합니다.</span>
+                    </div>
+                    <div class="layer-row">
+                        <strong>CLI / Desktop</strong>
+                        <span>콘솔 REPL과 WPF 데스크톱 앱이 같은 핵심 구조를 공유하면서 서로 다른 사용자 경험을 제공합니다.</span>
+                    </div>
+                </div>
+
+                <div class="architecture-grid">
+                    <div class="architecture-card">
+                        <h3><i class="fas fa-arrows-rotate"></i> Tool-use Conversation Loop</h3>
+                        <p>LLM 응답에서 도구 호출을 수집하고, 권한 확인 후 실행 결과를 다시 대화에 넣어 반복하는 ReAct 기반 실행 루프를 구현했습니다.</p>
+                    </div>
+                    <div class="architecture-card">
+                        <h3><i class="fas fa-layer-group"></i> Hybrid Context Bank</h3>
+                        <p>워크스페이스 인덱스, 프로젝트 메모리, 시스템 스킬, MCP 컨텍스트, 실행 실패 기록을 요청별로 조립해 필요한 맥락만 전달합니다.</p>
+                    </div>
+                    <div class="architecture-card">
+                        <h3><i class="fas fa-shield-halved"></i> Guardrail System</h3>
+                        <p>빈 응답, 도구 없는 코딩 응답, 수동 복붙 안내, 읽기 전용 반복처럼 에이전트가 잘못 흐르는 상황을 코드 레벨에서 감지하고 교정합니다.</p>
+                    </div>
+                    <div class="architecture-card">
+                        <h3><i class="fas fa-clipboard-check"></i> Evidence & HITL</h3>
+                        <p>도구 실행, 파일 변경, 검증 결과를 Evidence Trail로 남기고, 위험한 파일 수정과 셸 실행은 사용자 승인 흐름을 거치도록 설계했습니다.</p>
+                    </div>
+                </div>
 
                 <h2>RAG와 검색 구조</h2>
                 <p>키워드 검색만으로 찾기 어려운 코드까지 찾기 위해 프로젝트 파일을 청크로 나누고, OpenAI Embeddings로 로컬 인덱스를 생성하는 구조를 설계했습니다.</p>
