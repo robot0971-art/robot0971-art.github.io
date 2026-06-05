@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentQ Architecture - Portfolio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .doc-page {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0b1020 0%, #1f4f8f 48%, #55d6ff 100%);
+        }
+
+        .doc-container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 20px 4rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .doc-hero {
+            padding: 3rem 0;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .doc-hero h1 {
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22);
+        }
+
+        .doc-hero p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .doc-content {
+            padding: 3rem;
+            border-radius: 15px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .doc-content h2 {
+            margin: 2.75rem 0 1rem;
+            color: #1f4f8f;
+            font-size: 1.8rem;
+        }
+
+        .doc-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .doc-content h3 {
+            margin: 1.6rem 0 0.7rem;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+        }
+
+        .doc-content p,
+        .doc-content li {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .doc-content ul {
+            margin: 0 0 1rem 1.2rem;
+        }
+
+        .doc-meta {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .doc-meta span {
+            padding: 0.45rem 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+        }
+
+        .layout-grid,
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .doc-card {
+            padding: 1.2rem;
+            border: 1px solid rgba(31, 79, 143, 0.12);
+            border-radius: 12px;
+            background: linear-gradient(135deg, #eef7ff 0%, #effdf8 100%);
+        }
+
+        .doc-card h3 {
+            margin-top: 0;
+            color: #1f4f8f;
+        }
+
+        .doc-card p:last-child,
+        .doc-card ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-box {
+            margin: 1rem 0 2rem;
+            padding: 1.25rem;
+            border: 1px solid rgba(31, 79, 143, 0.12);
+            border-radius: 12px;
+            background: #0f172a;
+            color: #f8fbff;
+            overflow-x: auto;
+        }
+
+        .flow-box pre {
+            margin: 0;
+            color: #f8fbff;
+            font-family: Consolas, "Noto Sans KR", monospace;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            white-space: pre;
+        }
+
+        .extension-table {
+            width: 100%;
+            margin: 1rem 0 2rem;
+            border-collapse: collapse;
+            color: var(--text-light);
+        }
+
+        .extension-table th,
+        .extension-table td {
+            padding: 0.85rem;
+            border: 1px solid #dbeafe;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .extension-table th {
+            color: #1f4f8f;
+            background: #eef7ff;
+        }
+
+        .summary-card {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0b1020 0%, #1f4f8f 100%);
+        }
+
+        .summary-card p {
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .doc-hero h1 {
+                font-size: 2rem;
+            }
+
+            .doc-content {
+                padding: 1.5rem;
+            }
+
+            .layout-grid,
+            .pattern-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html#home" class="nav-logo">Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="doc-page">
+        <div class="doc-container">
+            <a href="agentq-desktop.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> AgentQ 상세로 돌아가기
+            </a>
+
+            <header class="doc-hero">
+                <h1>AgentQ 아키텍처 문서</h1>
+                <p>C# 기반 AI 코딩 어시스턴트 AgentQ의 계층 구조, 데이터 흐름, 도구 실행 루프, 가드레일, 확장 포인트를 정리한 설계 문서입니다.</p>
+                <div class="doc-meta">
+                    <span><i class="far fa-calendar"></i> 2026-06-05</span>
+                    <span><i class="fas fa-code"></i> C# / WPF / LLM Agent</span>
+                    <span><i class="fas fa-diagram-project"></i> Architecture Review</span>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h2>프로젝트 전체 구조</h2>
+                <div class="flow-box">
+                    <pre>csharp/
+├── AgentQ.Api                    계약 계층 (DTO, Enum, 도구 정의)
+├── AgentQ.Core                   공통 핵심 (모델, Provider 추상화, 설정 로더)
+├── AgentQ.Providers.Anthropic    Anthropic API 구현
+├── AgentQ.Providers.OpenAi       OpenAI / OpenCode Go 호환 구현
+├── AgentQ.Tools                  내장 도구 (bash, read_file, write_file, ...)
+├── AgentQ.Cli                    콘솔 CLI 앱 (REPL + 자동화)
+├── AgentQ.Desktop                WPF 데스크톱 앱 + 서비스 계층
+├── AgentQ.MockService            Provider 패리티 테스트용 Mock 서버
+└── AgentQ.Tests                  단위/통합/데스크톱 서비스 테스트</pre>
+                </div>
+
+                <h2>계층별 아키텍처</h2>
+                <div class="layout-grid">
+                    <section class="doc-card">
+                        <h3>AgentQ.Api</h3>
+                        <p>모든 모듈이 공유하는 순수 DTO와 계약 계층입니다. ToolDefinition, MessageRequest, StreamEvents, ContentBlocks를 정의합니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>AgentQ.Core</h3>
+                        <p>Provider와 도메인 모델의 추상화 계층입니다. ILlmProvider, ProviderFactory, 설정 로더, ToolCallDeltaBuffer, ChatModels를 담당합니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>Providers / Tools</h3>
+                        <p>OpenAI 호환 Provider와 Anthropic Provider, 파일 읽기/수정, grep/glob, semantic/symbol/hybrid search 같은 도구를 연결합니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>CLI / Desktop</h3>
+                        <p>CLI는 REPL과 자동화 실행을 담당하고, Desktop은 WPF UI와 프로젝트 분석, 검증, 권한, 메모리, Git 패널을 통합합니다.</p>
+                    </section>
+                </div>
+
+                <h2>데이터 흐름</h2>
+                <h3>CLI 대화형 흐름</h3>
+                <div class="flow-box">
+                    <pre>사용자 입력
+  ↓
+CliApplication.RunAsync()
+  ↓
+ChatConversationHistory.AddUserMessage()
+  ↓
+CliToolLoopRunner.ExecuteConversationTurnAsync()
+  ├── ChatContext + ToolDefinitions 조립
+  ├── provider.GenerateStreamAsync()
+  ├── StreamingProcessor.ProcessAsync()
+  └── toolUses 있음?
+        ├── ToolExecutor.ExecuteAsync()
+        ├── history.AddToolResults()
+        └── 최대 stepLimit까지 반복</pre>
+                </div>
+
+                <h3>Desktop 실행 흐름</h3>
+                <div class="flow-box">
+                    <pre>사용자 입력 + Attachments
+  ↓
+DesktopAgentRunWorkflowService.SendCurrentMessageAsync()
+  ├── WorkspaceIndexer / ProjectMemory / SystemSkill 컨텍스트 조립
+  ├── DesktopPromptAssemblyService.BuildSystemPrompt()
+  ├── provider.GenerateStreamAsync()
+  ├── Guardrail 체크
+  ├── ExecuteToolsAsync()
+  │     ├── 권한 확인
+  │     ├── 도구 실행
+  │     └── FileMutationSnapshotService 기록
+  └── Telemetry / Diagnostics / Replay 저장</pre>
+                </div>
+
+                <h2>핵심 설계 패턴</h2>
+                <div class="pattern-grid">
+                    <section class="doc-card">
+                        <h3>Tool-use Conversation Loop</h3>
+                        <p>LLM 응답에 도구 호출이 있으면 실행하고, 결과를 다시 메시지에 추가해 LLM을 재호출하는 ReAct 기반 루프입니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>Dynamic Prompt Assembly</h3>
+                        <p>요청 종류와 권한 상태, 작업 프로필, 증거 기반 규칙을 조합해 런타임에 시스템 프롬프트를 구성합니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>Hybrid Context Bank</h3>
+                        <p>워크스페이스 인덱스, URL 컨텍스트, 프로젝트 메모리, MCP, 시스템 스킬, 실행 실패 기록을 요청별로 조립합니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>Guardrail System</h3>
+                        <p>빈 응답, 도구 없는 코딩 응답, 수동 복붙 안내, 읽기 전용 반복처럼 잘못된 흐름을 코드 레벨에서 감지하고 교정합니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>Evidence Trail</h3>
+                        <p>AgentRunStep, FileChangeRecord, ToolReplayEntry, Confidence Scoring으로 에이전트 행동의 근거를 추적합니다.</p>
+                    </section>
+                    <section class="doc-card">
+                        <h3>HITL 권한 흐름</h3>
+                        <p>위험한 파일 수정과 셸 실행은 IPermissionEnforcer를 통해 사용자 승인 후 실행되도록 설계했습니다.</p>
+                    </section>
+                </div>
+
+                <h2>확장성 포인트</h2>
+                <table class="extension-table">
+                    <thead>
+                        <tr>
+                            <th>확장 지점</th>
+                            <th>방법</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>새 LLM Provider</td>
+                            <td>ILlmProvider 구현 후 ProviderFactory에 등록합니다.</td>
+                        </tr>
+                        <tr>
+                            <td>새 도구</td>
+                            <td>ITool 구현 후 ToolRegistry에 등록합니다.</td>
+                        </tr>
+                        <tr>
+                            <td>새 프롬프트 규칙</td>
+                            <td>IDesktopPromptRule 구현 후 PromptRules 목록에 추가합니다.</td>
+                        </tr>
+                        <tr>
+                            <td>새 Task 분류</td>
+                            <td>DesktopTaskClassifier와 DesktopTaskProfile을 확장합니다.</td>
+                        </tr>
+                        <tr>
+                            <td>새 언어 Worker</td>
+                            <td>TypeScript, Python, Native worker처럼 외부 분석 스크립트를 추가합니다.</td>
+                        </tr>
+                        <tr>
+                            <td>새 MCP 서버</td>
+                            <td>McpServerRegistry 설정 후 McpBridgeTool과 연동합니다.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>설계 철학</h2>
+                <div class="summary-card">
+                    <p>AgentQ는 LLM에게 모든 것을 맡기는 도구가 아니라, 계획, 가드레일, 검증, 롤백, 증거 추적을 코드 레벨에서 관리하는 에이전트 프레임워크입니다. 핵심은 결정적 안전망, 관찰 가능성, 점진적 학습입니다.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Unity Game Developer Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
