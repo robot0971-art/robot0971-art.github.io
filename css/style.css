@@ -134,16 +134,33 @@ body {
     padding: 20px;
 }
 
+.hero-text {
+    position: relative;
+    display: inline-block;
+}
+
 .hero-title {
     font-size: 4rem;
     font-weight: 700;
     color: var(--white);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
     animation: fadeInUp 1s ease;
 }
 
+.hero-byline {
+    color: var(--white);
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1.1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+    animation: fadeInUp 1s ease 0.1s;
+    animation-fill-mode: both;
+}
+
 .hero-subtitle {
+    position: relative;
+    top: 5px;
     font-size: 1.8rem;
     color: var(--white);
     margin-bottom: 1rem;
@@ -152,6 +169,8 @@ body {
 }
 
 .hero-description {
+    position: relative;
+    top: 5px;
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
@@ -160,6 +179,8 @@ body {
 }
 
 .hero-buttons {
+    position: relative;
+    top: 5px;
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -338,23 +359,8 @@ section {
 }
 
 .skill-card h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     color: var(--text-dark);
-}
-
-.skill-bar {
-    height: 10px;
-    background: #f0f0f0;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.skill-progress {
-    height: 100%;
-    background: linear-gradient(90deg, var(--pastel-pink), var(--pastel-purple));
-    border-radius: 5px;
-    width: 0%;
-    transition: width 1.5s ease;
 }
 
 /* Projects Section */
@@ -519,44 +525,28 @@ section {
     color: var(--text-light);
     margin-bottom: 1rem;
     font-size: 0.95rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     flex-shrink: 0;
 }
 
-.project-card-ralfton .project-info > p:not(.project-summary) {
+.project-info .project-meta {
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(248, 187, 208, 0.22);
+    color: #8a4f68;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.project-card-ralfton .project-info > p:not(.project-summary):not(.project-meta) {
     display: none;
 }
 
 .project-card-ralfton .project-summary {
-    -webkit-line-clamp: 5;
-}
-
-.project-highlights {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.5rem;
-    margin: 0.15rem 0 1rem;
-}
-
-.project-highlights span {
-    min-width: 0;
-    padding: 0.65rem 0.45rem;
-    border: 1px solid rgba(57, 95, 147, 0.12);
-    border-radius: 10px;
-    background: linear-gradient(135deg, #eef7ff 0%, #effdf8 100%);
-    color: #5f6f83;
-    font-size: 0.74rem;
-    line-height: 1.25;
-    text-align: center;
-}
-
-.project-highlights strong {
     display: block;
-    color: #243449;
-    font-size: 1rem;
 }
 
 .project-tags {
@@ -818,6 +808,11 @@ section {
 
     .hero-subtitle {
         font-size: 1.3rem;
+    }
+
+    .hero-byline {
+        margin: 0 0 1rem;
+        font-size: 1rem;
     }
 
     .hero-buttons {

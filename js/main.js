@@ -60,12 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-
-                const skillBar = entry.target.querySelector('.skill-progress');
-                if (skillBar) {
-                    const progress = skillBar.getAttribute('data-progress');
-                    skillBar.style.width = progress + '%';
-                }
             }
         });
     }, observerOptions);

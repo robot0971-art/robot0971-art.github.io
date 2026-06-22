@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Game Developer Portfolio</title>
-    <link rel="stylesheet" href="css/style.css?v=20260602-layout">
+    <link rel="stylesheet" href="css/style.css?v=20260622-ralfton-entry-label">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,8 +35,9 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">Unity Game Developer</h1>
+                <p class="hero-byline">By 이선규</p>
                 <p class="hero-subtitle">C#과 Unity로 게임을 만듭니다</p>
-                <p class="hero-description">게임 시스템 구현과 플레이 흐름 설계를 꾸준히 공부하는 개발자입니다.</p>
+                <p class="hero-description">게임 시스템 설계와 플레이 흐름을 코드로 구현하는 개발자입니다.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
                     <a href="#contact" class="btn btn-secondary">연락하기</a>
@@ -102,45 +103,30 @@
                         <i class="fab fa-unity"></i>
                     </div>
                     <h3>Unity</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="70"></div>
-                    </div>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
                         <i class="fas fa-hashtag"></i>
                     </div>
                     <h3>C#</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="70"></div>
-                    </div>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
                         <i class="fab fa-git-alt"></i>
                     </div>
                     <h3>Git</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="60"></div>
-                    </div>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
                         <i class="fas fa-gamepad"></i>
                     </div>
                     <h3>Game Design</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="60"></div>
-                    </div>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">
                         <span class="photoshop-mark" aria-hidden="true">Ps</span>
                     </div>
                     <h3>Photoshop</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="60"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -165,7 +151,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Multiplayer Fishing</h3>
-                        <p>Mirror 서버 기반 멀티플레이어 낚시 게임입니다. 캐릭터 애니메이션, 서버 버그 수정, Supabase 데이터 연동을 담당했습니다.</p>
+                        <p class="project-meta">팀 프로젝트 · 애니메이션 로직 및 네트워크 수정 담당</p>
+                        <p>Mirror 기반 서버/클라이언트 구조로 멀티플레이 낚시 흐름을 구현했습니다. 캐릭터 이동과 애니메이션 동기화, 서버 권한 처리, Supabase 데이터 저장 연동을 담당했습니다. 네트워크 지연과 상태 불일치 문제를 테스트하며 수정했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">Unity</span>
                             <span class="tag">Mirror</span>
@@ -183,7 +170,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Knight Quest</h3>
-                        <p>기사 캐릭터가 자동 전투로 몬스터를 처치하고 성장하는 2D 사이드스크롤 방치형 RPG입니다.</p>
+                        <p class="project-meta">개인 프로젝트 · 전투/성장 시스템 구현</p>
+                        <p>자동 전투 기반의 2D 사이드스크롤 방치형 RPG입니다. 몬스터 탐지, 공격 루프, 성장 수치 계산, 보상 흐름을 C# 스크립트로 구성했습니다. 반복 플레이가 끊기지 않도록 전투 상태 전환과 UI 피드백을 정리했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">Unity 6</span>
                             <span class="tag">C#</span>
@@ -201,7 +189,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Sunnyside Island</h3>
-                        <p>섬에서 자원을 모으고 탈출용 배를 만드는 2D 생존 생활 게임입니다.</p>
+                        <p class="project-meta">개인 프로젝트 · 생존/제작 시스템 구현</p>
+                        <p>섬에서 자원을 수집하고 탈출용 배를 제작하는 2D 생존 생활 게임입니다. 자원 채집, 인벤토리, 제작 재료 조건, 맵 상호작용을 구현했습니다. 플레이 목표가 자연스럽게 이어지도록 수집과 제작 루프를 설계했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">Unity</span>
                             <span class="tag">C#</span>
@@ -219,7 +208,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Dino Evolution</h3>
-                        <p>작은 공룡으로 시작해 낮은 레벨의 공룡을 먹고 EXP를 모아 성장하는 3D 3인칭 액션 게임입니다. 레벨 비교, 성장, 적 스폰, HUD 피드백 구조를 구현했습니다.</p>
+                        <p class="project-meta">팀 프로젝트 · 리드 프로그래머</p>
+                        <p>작은 공룡으로 시작해 먹이를 획득하고 성장하는 3D 액션 게임입니다. 먹이 판정, EXP 누적, 레벨 비교, 성장 스케일 변경, HUD 피드백을 구현했습니다. 플레이어의 성장 단계에 따라 사냥 대상과 위험도를 다르게 구성했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">Unity 6</span>
                             <span class="tag">C#</span>
@@ -238,7 +228,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Community Lounge</h3>
-                        <p>Next.js와 Supabase로 만든 네온 테마 커뮤니티 게시판입니다. 인증, 게시글 CRUD, 댓글/대댓글, 이미지 업로드와 목록 조회 오류 해결을 경험했습니다.</p>
+                        <p class="project-meta">개인 프로젝트 · 풀스택 게시판 구현</p>
+                        <p>Next.js와 Supabase로 만든 네온 테마 커뮤니티 게시판입니다. 인증, 게시글 CRUD, 댓글/대댓글, 이미지 업로드, 목록 조회 기능을 구현했습니다. Supabase 연동 오류와 데이터 조회 흐름을 직접 디버깅하며 개선했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">Next.js</span>
                             <span class="tag">TypeScript</span>
@@ -257,7 +248,8 @@
                     </div>
                     <div class="project-info">
                         <h3>AgentQ Desktop</h3>
-                        <p>로컬 프로젝트를 분석하고 코드 검색, 파일 수정, 권한 승인, diff 검토, RAG 검색을 수행하는 Windows 데스크톱 AI 코딩 에이전트입니다.</p>
+                        <p class="project-meta">개인 프로젝트 · WPF/RAG 구조 구현</p>
+                        <p>로컬 프로젝트를 분석하고 코드 검색, 파일 수정, 권한 승인, diff 검토를 수행하는 Windows 데스크톱 AI 코딩 에이전트입니다. WPF 기반 UI와 RAG 검색 흐름을 연결했습니다. 사용자가 변경 전후를 확인할 수 있도록 작업 승인 구조를 설계했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">C#</span>
                             <span class="tag">WPF</span>
@@ -278,12 +270,8 @@
                     <div class="project-info">
                         <div class="project-kicker"><i class="fas fa-chart-line"></i> Nasdaq Research Memo Tool</div>
                         <h3>Mini Ralfthon</h3>
-                        <p class="project-summary">Nasdaq 종목 데이터를 수집해 기술 지표, 재무 요약, 뉴스 흐름을 Markdown/JSON 리서치 메모로 정리하는 Codex Plugin MVP입니다.</p>
-                        <div class="project-highlights" aria-label="Mini Ralfthon 핵심 요약">
-                            <span><strong>1</strong> ticker input</span>
-                            <span><strong>2</strong> report formats</span>
-                            <span><strong>15</strong> tests</span>
-                        </div>
+                        <p class="project-meta">부산 미니 랄프톤 2026 출품작 · Codex Plugin MVP 구현</p>
+                        <p class="project-summary">Nasdaq 종목 데이터를 수집해 기술 지표, 재무 요약, 뉴스 흐름을 Markdown/JSON 리서치 메모로 정리하는 Codex Plugin MVP입니다. ticker 입력부터 보고서 생성까지 자동화했습니다. 테스트 케이스를 추가해 출력 형식과 핵심 계산 흐름을 검증했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">Python</span>
                             <span class="tag">Codex Plugin</span>
@@ -302,7 +290,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Unity Performance Audit Skill</h3>
-                        <p>Unity 프로젝트를 정적 스캔해 렌더링, 물리, 텍스처, UI, 빌드 크기 위험을 분석하고 한국어 최적화 리포트를 생성하는 Codex Skill입니다.</p>
+                        <p class="project-meta">개인 프로젝트 · Codex Skill 설계/구현</p>
+                        <p>Unity 프로젝트를 정적 분석해 렌더링, 물리, 텍스처, UI, 빌드 크기 위험을 점검하는 Codex Skill입니다. 프로젝트 구조와 설정을 읽어 모바일 최적화 관점의 리포트를 생성합니다. 반복 점검이 쉽도록 분석 항목과 결과 포맷을 표준화했습니다.</p>
                         <div class="project-tags">
                             <span class="tag">Unity</span>
                             <span class="tag">Python</span>
