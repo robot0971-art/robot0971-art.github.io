@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNGC Gamejam 2026 - Portfolio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe7a8 0%, #f7a5bd 48%, #a8c7ff 100%);
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .project-media {
+            margin-bottom: 3rem;
+        }
+
+        .project-video,
+        .main-image {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            background: #111;
+            margin-bottom: 1rem;
+        }
+
+        .project-video {
+            max-height: 72vh;
+            object-fit: contain;
+        }
+
+        .main-image {
+            cursor: pointer;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .image-gallery img:hover,
+        .main-image:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-content {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .project-content h2 {
+            color: #7a63c7;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 0 0 1.5rem 1.2rem;
+        }
+
+        .jam-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .jam-fact {
+            padding: 1rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 231, 168, 0.5), rgba(247, 165, 189, 0.38));
+        }
+
+        .jam-fact strong {
+            display: block;
+            color: #7a63c7;
+            font-size: 0.88rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .jam-fact span {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .role-item {
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            background: #fff7fb;
+            color: var(--text-dark);
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 0.65rem;
+            row-gap: 0.75rem;
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tech-stack .tag {
+            background: linear-gradient(135deg, #ffe7a8, #f7a5bd);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.82);
+            z-index: 2000;
+            padding: 24px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: min(1100px, 86vw);
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+            background: #111;
+        }
+
+        .lightbox-btn {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--text-dark);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .lightbox-btn:hover {
+            background: var(--white);
+            transform: scale(1.05);
+        }
+
+        .lightbox-close {
+            top: 24px;
+            right: 24px;
+        }
+
+        .lightbox-prev {
+            left: 24px;
+        }
+
+        .lightbox-next {
+            right: 24px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%);
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-meta {
+                gap: 1rem;
+            }
+
+            .lightbox {
+                padding: 16px;
+            }
+
+            .lightbox-image {
+                max-width: 92vw;
+                max-height: 76vh;
+            }
+
+            .lightbox-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-prev {
+                left: 12px;
+            }
+
+            .lightbox-next {
+                right: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="project-container">
+            <a href="../index.html#projects" class="back-btn">
+                <i class="fas fa-arrow-left"></i> 프로젝트 목록으로 돌아가기
+            </a>
+
+            <div class="project-header">
+                <h1>GNGC Gamejam 2026</h1>
+                <div class="project-meta">
+                    <span><i class="far fa-calendar"></i> 2026</span>
+                    <span><i class="fas fa-users"></i> 기획 1 · 아트 2 · 프로그래머 1</span>
+                    <span><i class="fas fa-code-branch"></i> Unity 6, C#</span>
+                </div>
+            </div>
+
+            <div class="project-media">
+                <video controls autoplay muted playsinline preload="auto" class="project-video"
+                    poster="../images/projects/gngc-gamejam/gngc-gamejam-1.png">
+                    <source src="../videos/gngc-gamejam-highlight.mp4" type="video/mp4">
+                    브라우저가 동영상 재생을 지원하지 않습니다.
+                </video>
+                <img src="../images/projects/gngc-gamejam/gngc-gamejam-1.png" alt="GNGC Gamejam main screenshot"
+                    class="main-image gallery-image" data-gallery-index="0">
+                <div class="image-gallery">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-2.png"
+                        alt="GNGC Gamejam preview screenshot" class="gallery-image" data-gallery-index="1">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-3.png"
+                        alt="GNGC Gamejam sniper mode screenshot" class="gallery-image" data-gallery-index="2">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-4.png"
+                        alt="GNGC Gamejam shooting screenshot" class="gallery-image" data-gallery-index="3">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-5.png"
+                        alt="GNGC Gamejam stage screenshot" class="gallery-image" data-gallery-index="4">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-6.png"
+                        alt="GNGC Gamejam HUD screenshot" class="gallery-image" data-gallery-index="5">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-7.png"
+                        alt="GNGC Gamejam result screenshot" class="gallery-image" data-gallery-index="6">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-8.png"
+                        alt="GNGC Gamejam story screenshot" class="gallery-image" data-gallery-index="7">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-9.png"
+                        alt="GNGC Gamejam final screenshot" class="gallery-image" data-gallery-index="8">
+                    <img src="../images/projects/gngc-gamejam/gngc-gamejam-10.jpg"
+                        alt="GNGC Gamejam additional screenshot" class="gallery-image" data-gallery-index="9">
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="jam-facts">
+                    <div class="jam-fact">
+                        <strong>Game Jam</strong>
+                        <span>AI Theme</span>
+                    </div>
+                    <div class="jam-fact">
+                        <strong>개발 기간</strong>
+                        <span>2박 3일</span>
+                    </div>
+                    <div class="jam-fact">
+                        <strong>팀 구성</strong>
+                        <span>기획 1 · 아트 2 · 프로그래머 1</span>
+                    </div>
+                    <div class="jam-fact">
+                        <strong>담당</strong>
+                        <span>Sole Unity Programmer</span>
+                    </div>
+                    <div class="jam-fact">
+                        <strong>엔진</strong>
+                        <span>Unity 6</span>
+                    </div>
+                </div>
+
+                <h2>프로젝트 소개</h2>
+                <p>GNGC Gamejam 2026은 AI를 주제로 한 2박3일 GNGC 게임잼에서 만든 게임입니다. 플레이어는 웨이브마다 등장하는 5명의 참가자를 관찰한 뒤 AI만 골라 제한된 탄 수 안에서 제거해야 합니다.</p>
+                <p>AI라는 주제를 단순한 소재가 아니라 "구분하고 판정하는 플레이"로 연결하는 데 초점을 맞췄습니다.</p>
+
+                <h2>담당 역할</h2>
+                <div class="role-grid">
+                    <div class="role-item">Game Loop</div>
+                    <div class="role-item">Stage Flow</div>
+                    <div class="role-item">Wave Generation</div>
+                    <div class="role-item">Shooting</div>
+                    <div class="role-item">HUD / UI</div>
+                    <div class="role-item">Camera Direction</div>
+                    <div class="role-item">Reward Event</div>
+                    <div class="role-item">Cutscene Integration</div>
+                </div>
+
+                <h2>주요 기능</h2>
+                <ul class="feature-list">
+                    <li>웨이브마다 인간과 AI 참가자를 섞어 5명 단위로 생성</li>
+                    <li>저격 모드 전 참가자를 한 명씩 보여주는 프리뷰 흐름</li>
+                    <li>AI 수와 같은 탄 수를 지급하고, 오발과 잔여 AI 여부로 결과 판정</li>
+                    <li>하트, 탄 수, 타이머, 클리어/게임 오버 패널을 HUD로 표시</li>
+                    <li>스테이지별 AI 스프라이트 세트와 인간/AI 중복 번호 방지 규칙 적용</li>
+                    <li>마우스 입력과 2D Raycast 기반 사격, 조준 대상 자동 선택 처리</li>
+                    <li>스테이지 클리어 후 랜덤 보상 선택과 다음 스테이지 효과 적용</li>
+                    <li>실패한 스테이지에서 랜덤 프리뷰를 다시 구성하는 리스타트 처리</li>
+                </ul>
+
+                <h2>Tech Stack</h2>
+                <div class="tech-stack">
+                    <span class="tag">Unity 6000.3.18f1</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">URP 2D</span>
+                    <span class="tag">TextMeshPro</span>
+                    <span class="tag">Input System</span>
+                    <span class="tag">Physics2D Raycast</span>
+                    <span class="tag">Coroutine Flow</span>
+                    <span class="tag">CanvasGroup UI</span>
+                    <span class="tag">SpriteRenderer</span>
+                    <span class="tag">AudioSource</span>
+                </div>
+
+                <h2>Key Systems</h2>
+                <div class="tech-stack">
+                    <span class="tag">Editor Auto-Fill</span>
+                    <span class="tag">Wave Generation</span>
+                    <span class="tag">Stage State Machine</span>
+                    <span class="tag">Reward System</span>
+                    <span class="tag">Cutscene Control</span>
+                </div>
+
+                <h2>개발 포인트</h2>
+                <p>Core는 스테이지 진행, 타이머, 결과 판정, 보상 적용을 담당하고 Gameplay는 참가자 데이터, 웨이브 생성, 사격 규칙을 담당하도록 나눴습니다.</p>
+                <p>같은 번호의 인간과 AI가 동시에 등장하지 않도록 웨이브 생성 규칙을 두어, 랜덤 구성 안에서도 플레이어가 공정하게 판단할 수 있게 했습니다.</p>
+                <p>Presentation 계층은 HUD, 카메라 연출, 컷신, UI를 담당하도록 분리해 게임잼 기간에도 기능 수정이 다른 시스템에 영향을 주지 않도록 구성했습니다.</p>
+
+                <h2>배운 점</h2>
+                <p>짧은 시간 안에 규칙이 명확한 게임을 만들려면, 처음부터 플레이어가 언제 관찰하고 언제 판단하는지 흐름을 분명히 잡는 것이 중요하다는 점을 배웠습니다.</p>
+                <p>또한 랜덤 웨이브 생성처럼 작은 규칙 하나가 게임의 공정함에 큰 영향을 주기 때문에, 데이터 구성과 판정 로직을 UI와 분리해 검증하기 쉬운 구조로 두는 것이 도움이 됐습니다.</p>
+
+                <div class="project-links">
+                    <a href="https://github.com/robot0971-art/GNGC-Gamejam2026" class="btn btn-primary"
+                        target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> GitHub 저장소
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="imageLightbox" aria-hidden="true">
+        <button class="lightbox-btn lightbox-close" type="button" aria-label="닫기">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-btn lightbox-prev" type="button" aria-label="이전 이미지">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img src="../images/projects/gngc-gamejam/gngc-gamejam-1.png" alt="GNGC Gamejam screenshot enlarged"
+            class="lightbox-image">
+        <button class="lightbox-btn lightbox-next" type="button" aria-label="다음 이미지">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-counter" aria-live="polite">1 / 10</div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Unity Game Developer Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const galleryImages = Array.from(document.querySelectorAll('.gallery-image'));
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImage = lightbox.querySelector('.lightbox-image');
+        const closeButton = lightbox.querySelector('.lightbox-close');
+        const prevButton = lightbox.querySelector('.lightbox-prev');
+        const nextButton = lightbox.querySelector('.lightbox-next');
+        const counter = lightbox.querySelector('.lightbox-counter');
+        let currentImageIndex = 0;
+
+        function showImage(index) {
+            currentImageIndex = (index + galleryImages.length) % galleryImages.length;
+            const target = galleryImages[currentImageIndex];
+            lightboxImage.src = target.src;
+            lightboxImage.alt = target.alt;
+            counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        }
+
+        function openLightbox(index) {
+            showImage(index);
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        galleryImages.forEach((image, index) => {
+            image.addEventListener('click', () => openLightbox(index));
+        });
+
+        closeButton.addEventListener('click', closeLightbox);
+        prevButton.addEventListener('click', () => showImage(currentImageIndex - 1));
+        nextButton.addEventListener('click', () => showImage(currentImageIndex + 1));
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (!lightbox.classList.contains('active')) return;
+
+            if (event.key === 'Escape') {
+                closeLightbox();
+            } else if (event.key === 'ArrowLeft') {
+                showImage(currentImageIndex - 1);
+            } else if (event.key === 'ArrowRight') {
+                showImage(currentImageIndex + 1);
+            }
+        });
+    </script>
+</body>
+
+</html>
